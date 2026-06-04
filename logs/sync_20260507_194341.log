@@ -1,0 +1,26 @@
+2026-05-07 19:45:56,013 - INFO - SYNC STARTED -> users
+2026-05-07 19:45:56,014 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 19:45:56,015 - INFO - ROWS FETCHED: 0
+2026-05-07 19:45:56,016 - INFO - NO NEW ROWS -> users
+2026-05-07 19:45:56,016 - INFO - SYNC STARTED -> clients
+2026-05-07 19:45:56,016 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 19:45:56,018 - INFO - ROWS FETCHED: 0
+2026-05-07 19:45:56,018 - INFO - NO NEW ROWS -> clients
+2026-05-07 19:45:56,018 - INFO - SYNC STARTED -> vendors
+2026-05-07 19:45:56,018 - INFO - SELECT v.id, v.name, v.code, v.address, v.country, v.assigned_to, v.contact_first_name, v.contact_last_name, v.contact_email, v.contact_office_no, v.contact_mobile_no, v.contact_designation, v.billing_name, v.billing_email, v.billing_address, v.billing_terms, v.status, v.created_by, v.modified_by, v.created_on, v.modified_on FROM vendors v
+2026-05-07 19:45:56,019 - INFO - ROWS FETCHED: 1
+2026-05-07 19:45:56,019 - INFO - 
+                        INSERT INTO "vendors"
+                        (id, vendor_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :vendor_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        vendor_code = EXCLUDED.vendor_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 19:45:56,023 - INFO - SYNC COMPLETED -> vendors

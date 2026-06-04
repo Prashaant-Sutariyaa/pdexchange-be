@@ -1,0 +1,38 @@
+2026-05-07 18:14:45,474 - INFO - SYNC STARTED -> users_list
+2026-05-07 18:14:45,476 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 18:14:45,478 - INFO - ROWS FETCHED: 0
+2026-05-07 18:14:45,478 - INFO - NO NEW ROWS -> users_list
+2026-05-07 18:14:45,478 - INFO - SYNC STARTED -> campaign_data
+2026-05-07 18:14:45,479 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 18:14:45,483 - INFO - ROWS FETCHED: 0
+2026-05-07 18:14:45,483 - INFO - NO NEW ROWS -> campaign_data
+2026-05-07 18:14:45,483 - INFO - SYNC STARTED -> client_data
+2026-05-07 18:14:45,483 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 18:14:45,484 - INFO - ROWS FETCHED: 4
+2026-05-07 18:14:45,484 - INFO - 
+                        INSERT INTO "client_data"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :client_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 18:14:45,485 - ERROR - SYNC FAILED -> client_data
+2026-05-07 18:14:45,485 - ERROR - (sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter 'id'
+[SQL: 
+                        INSERT INTO "client_data"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (%(id)s, %(client_code)s, %(name)s, %(address)s, %(country)s, %(assigned_to)s, %(first_name)s, %(last_name)s, %(contact_designation)s, %(contact_email)s, %(contact_office_number)s, %(contact_mobile_number)s, %(billing_name)s, %(billing_address)s, %(billing_email)s, %(billing_terms)s, %(created_by)s, %(updated_by)s, %(created_at)s, %(updated_at)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    ]
+(Background on this error at: https://sqlalche.me/e/20/cd3x)

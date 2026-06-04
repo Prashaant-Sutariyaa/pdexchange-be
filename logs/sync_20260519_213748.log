@@ -1,0 +1,2 @@
+2026-05-19 21:38:03,373 - INFO - HTTP Request: POST https://login.microsoftonline.com/60af9fa7-c04a-4ee2-af76-4b070362bc3b/oauth2/v2.0/token "HTTP/1.1 200 OK"
+2026-05-19 21:38:03,842 - INFO - HTTP Request: POST https://graph.microsoft.com/v1.0/users/crm-notification@prospectvine.com/sendMail "HTTP/1.1 202 Accepted"

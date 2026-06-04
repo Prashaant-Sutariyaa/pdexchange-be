@@ -1,0 +1,112 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+app/db/session.py
+app/core/postgres_client.py
+logs/*.log
+
+# GENERATED / CONFIG FILES
+mappings.json
+
+# Environment variables / secrets
+.env
+.env.*
+secrets.json
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Node (if using frontend)
+node_modules/
+
+# Database files
+*.sqlite3
+*.db
+
+# Test cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MyPy / Ruff / lint cache
+.mypy_cache/
+.ruff_cache/
+
+# Uploaded/generated media
+uploads/
+media/
+
+# AI / model files
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# ZIP files
+*.zip
+
+# ============================================================
+# 🔹 STORAGE
+# ============================================================
+
+storage/
+
+# Optional finer control
+# storage/uploads/
+# storage/exports/
+# storage/invalid/
+# storage/temp/
+
+# ============================================================
+# 🔹 LOGS
+# ============================================================
+
+logs/
+*.log
+
+# Optional log variations
+log/
+*.out
+*.err
+
+# ============================================================
+# 🔹 SENTINEL GENERATED FILES
+# ============================================================
+
+invalid_files/
+output_files/
+exports/
+
+# ============================================================
+# 🔹 EMAIL / GENERATED FILES
+# ============================================================
+
+generated/
+reports/

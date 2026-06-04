@@ -1,0 +1,53 @@
+2026-05-07 15:36:25,845 - INFO - ROLE LOOKUP LOADED: 6
+2026-05-07 15:36:25,846 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:36:25,846 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, r.id AS role_id FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id LEFT JOIN roles r ON r.name = p.role
+2026-05-07 15:38:03,283 - INFO - ROLE LOOKUP LOADED: 6
+2026-05-07 15:38:03,283 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:38:03,283 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, r.id AS role_id FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id LEFT JOIN roles r ON r.name = p.role
+2026-05-07 15:41:21,661 - INFO - ROLE LOOKUP LOADED: 6
+2026-05-07 15:41:21,666 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:41:21,666 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.role FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id
+2026-05-07 15:43:16,152 - INFO - ROLE LOOKUP LOADED: 6
+2026-05-07 15:43:16,152 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:43:16,152 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.role FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 15:43:16,156 - INFO - ROWS FETCHED: 33
+2026-05-07 15:43:16,156 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, role_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :role_id)
+                    
+2026-05-07 15:43:16,162 - INFO - SYNC COMPLETED -> users_list
+2026-05-07 15:46:22,971 - INFO - ROLE LOOKUP LOADED: 6
+2026-05-07 15:46:22,971 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:46:22,971 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.role FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                        WHERE modified > :last_sync
+                    
+2026-05-07 15:48:09,258 - INFO - ROLE LOOKUP LOADED: 7
+2026-05-07 15:48:09,258 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:48:09,258 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.role FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 15:48:09,260 - INFO - ROWS FETCHED: 33
+2026-05-07 15:48:09,260 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, role_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :role_id)
+                    
+2026-05-07 15:48:09,267 - INFO - SYNC COMPLETED -> users_list
+2026-05-07 15:49:44,325 - INFO - ROLE LOOKUP LOADED: 7
+2026-05-07 15:49:44,325 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:49:44,325 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.role FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 15:49:44,327 - INFO - ROWS FETCHED: 33
+2026-05-07 15:49:44,327 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, role_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :role_id)
+                    
+2026-05-07 15:50:26,591 - INFO - ROLE LOOKUP LOADED: 7
+2026-05-07 15:50:26,591 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:50:26,591 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.role FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 15:50:26,593 - INFO - ROWS FETCHED: 33
+2026-05-07 15:50:26,593 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, role_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :role_id)
+                    
+2026-05-07 15:50:26,598 - INFO - SYNC COMPLETED -> users_list

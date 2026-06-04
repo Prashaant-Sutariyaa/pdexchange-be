@@ -1,0 +1,14 @@
+2026-05-07 17:13:48,874 - INFO - SYNC STARTED -> users_list
+2026-05-07 17:13:48,875 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 17:13:48,877 - INFO - ROWS FETCHED: 31
+2026-05-07 17:13:48,877 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 17:13:48,885 - INFO - SYNC COMPLETED -> users_list

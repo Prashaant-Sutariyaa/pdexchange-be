@@ -1,0 +1,72 @@
+2026-05-07 17:19:19,104 - INFO - SYNC STARTED -> users_list
+2026-05-07 17:19:19,106 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 17:19:19,107 - INFO - ROWS FETCHED: 0
+2026-05-07 17:19:19,107 - INFO - NO NEW ROWS -> users_list
+2026-05-07 17:19:19,107 - INFO - SYNC STARTED -> campaign_data
+2026-05-07 17:19:19,107 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+2026-05-07 17:19:19,114 - INFO - ROWS FETCHED: 66
+2026-05-07 17:19:19,114 - INFO - 
+                        INSERT INTO "campaign_data"
+                        (id, campaign_code, campaign_name, campaign_type, delivery_mode, delivery_method, client_id, status, start_date, end_date, total_allocation, total_delivered, total_accepted, total_rejected, currency, cpl, priority, comment, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :campaign_code, :campaign_name, :campaign_type, :delivery_mode, :delivery_method, :client_id, :status, :start_date, :end_date, :total_allocation, :total_delivered, :total_accepted, :total_rejected, :currency, :cpl, :priority, :comment, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        campaign_code = EXCLUDED.campaign_code, campaign_name = EXCLUDED.campaign_name, campaign_type = EXCLUDED.campaign_type, delivery_mode = EXCLUDED.delivery_mode, delivery_method = EXCLUDED.delivery_method, client_id = EXCLUDED.client_id, status = EXCLUDED.status, start_date = EXCLUDED.start_date, end_date = EXCLUDED.end_date, total_allocation = EXCLUDED.total_allocation, total_delivered = EXCLUDED.total_delivered, total_accepted = EXCLUDED.total_accepted, total_rejected = EXCLUDED.total_rejected, currency = EXCLUDED.currency, cpl = EXCLUDED.cpl, priority = EXCLUDED.priority, comment = EXCLUDED.comment, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 17:19:19,139 - INFO - SYNC COMPLETED -> campaign_data
+2026-05-07 17:54:08,259 - INFO - SYNC STARTED -> users_list
+2026-05-07 17:54:08,261 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 17:54:08,262 - INFO - ROWS FETCHED: 0
+2026-05-07 17:54:08,262 - INFO - NO NEW ROWS -> users_list
+2026-05-07 17:54:08,262 - INFO - SYNC STARTED -> campaign_data
+2026-05-07 17:54:08,263 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 17:54:08,264 - INFO - ROWS FETCHED: 0
+2026-05-07 17:54:08,264 - INFO - NO NEW ROWS -> campaign_data
+2026-05-07 17:54:08,264 - INFO - SYNC STARTED -> client_data
+2026-05-07 17:54:08,264 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 17:54:08,265 - INFO - ROWS FETCHED: 4
+2026-05-07 17:54:08,265 - INFO - 
+                        INSERT INTO "client_data"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :client_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 17:54:08,271 - INFO - SYNC COMPLETED -> client_data
+2026-05-07 18:05:22,321 - INFO - SYNC STARTED -> users_list
+2026-05-07 18:05:22,322 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 18:05:22,323 - INFO - ROWS FETCHED: 0
+2026-05-07 18:05:22,323 - INFO - NO NEW ROWS -> users_list
+2026-05-07 18:05:22,323 - INFO - SYNC STARTED -> campaign_data
+2026-05-07 18:05:22,324 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 18:05:22,325 - INFO - ROWS FETCHED: 0
+2026-05-07 18:05:22,325 - INFO - NO NEW ROWS -> campaign_data
+2026-05-07 18:05:22,325 - INFO - SYNC STARTED -> client_data
+2026-05-07 18:05:22,325 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 18:05:22,326 - INFO - ROWS FETCHED: 4
+2026-05-07 18:05:22,326 - INFO - 
+                        INSERT INTO "client_data"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :client_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 18:05:22,330 - INFO - SYNC COMPLETED -> client_data

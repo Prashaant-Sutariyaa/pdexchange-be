@@ -1,0 +1,71 @@
+2026-05-07 13:55:10,035 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 13:55:10,035 - INFO - TRUNCATE TABLE "users_list"
+2026-05-07 13:55:10,037 - INFO - 
+                        SELECT id, email, activated, banned, modified, created
+                        FROM users
+                    
+2026-05-07 13:55:10,040 - INFO - ROWS FETCHED: 31
+2026-05-07 13:55:10,040 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, is_active, is_deleted, updated_at, created_at)
+                        VALUES (:id, :email, :is_active, :is_deleted, :updated_at, :created_at)
+                    
+2026-05-07 13:55:10,049 - INFO - SYNC COMPLETED: users
+2026-05-07 13:57:13,097 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 13:57:13,097 - INFO - 
+                        SELECT id, email, activated, banned, modified, created
+                        FROM users
+                        WHERE modified > :last_sync
+                    
+2026-05-07 13:57:13,100 - INFO - ROWS FETCHED: 0
+2026-05-07 13:57:13,100 - INFO - SYNC COMPLETED: users
+2026-05-07 13:57:40,151 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 13:57:40,151 - INFO - TRUNCATE TABLE "users_list"
+2026-05-07 13:57:40,153 - INFO - 
+                        SELECT id, email, activated, banned, modified, created
+                        FROM users
+                    
+2026-05-07 13:57:40,155 - INFO - ROWS FETCHED: 31
+2026-05-07 13:57:40,155 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, is_active, is_deleted, updated_at, created_at)
+                        VALUES (:id, :email, :is_active, :is_deleted, :updated_at, :created_at)
+                    
+2026-05-07 13:57:40,160 - INFO - SYNC COMPLETED: users
+2026-05-07 13:59:40,671 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 13:59:40,671 - INFO - TRUNCATE TABLE "users_list"
+2026-05-07 13:59:40,673 - INFO - 
+                        SELECT id, email, activated, password, banned, modified, created
+                        FROM users
+                    
+2026-05-07 13:59:40,675 - INFO - ROWS FETCHED: 31
+2026-05-07 13:59:40,675 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, is_active, password, is_deleted, updated_at, created_at)
+                        VALUES (:id, :email, :is_active, :password, :is_deleted, :updated_at, :created_at)
+                    
+2026-05-07 13:59:40,682 - INFO - SYNC COMPLETED: users
+2026-05-07 14:01:09,529 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 14:01:09,529 - INFO - 
+                        SELECT id, email, activated, password, banned, modified, created
+                        FROM users
+                        WHERE modified > :last_sync
+                    
+2026-05-07 14:01:09,530 - INFO - ROWS FETCHED: 0
+2026-05-07 14:01:09,530 - INFO - SYNC COMPLETED: users
+2026-05-07 14:03:43,365 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 14:03:43,365 - INFO - 
+                        SELECT id, email, activated, password, banned, modified, created
+                        FROM users
+                        WHERE modified > :last_sync
+                    
+2026-05-07 14:03:43,366 - INFO - ROWS FETCHED: 0
+2026-05-07 14:03:43,366 - INFO - SYNC COMPLETED: users
+2026-05-07 14:05:11,883 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 14:05:11,884 - INFO - 
+                        SELECT id, email, activated, password, banned, modified, created
+                        FROM users
+                        WHERE modified > :last_sync
+                    
+2026-05-07 14:05:11,884 - INFO - ROWS FETCHED: 0
+2026-05-07 14:05:11,885 - INFO - SYNC COMPLETED: users

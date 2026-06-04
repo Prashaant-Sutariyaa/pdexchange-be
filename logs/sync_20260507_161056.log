@@ -1,0 +1,10 @@
+2026-05-07 16:11:03,942 - INFO - ALL LOOKUPS LOADED
+2026-05-07 16:11:03,942 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:11:03,942 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:11:03,945 - INFO - ROWS FETCHED: 33
+2026-05-07 16:11:03,945 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+                    
+2026-05-07 16:11:03,964 - INFO - SYNC COMPLETED -> users_list

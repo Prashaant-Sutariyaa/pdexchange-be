@@ -1,0 +1,73 @@
+2026-05-07 19:25:06,101 - INFO - SYNC STARTED -> client
+2026-05-07 19:25:06,101 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 19:25:06,102 - INFO - ROWS FETCHED: 4
+2026-05-07 19:25:06,102 - INFO - 
+                        INSERT INTO "client"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :client_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 19:25:06,107 - ERROR - SYNC FAILED -> client
+2026-05-07 19:25:06,108 - ERROR - (psycopg2.errors.UndefinedTable) relation "client" does not exist
+LINE 2:                         INSERT INTO "client"
+                                            ^
+
+[SQL: 
+                        INSERT INTO "client"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (%(id)s, %(client_code)s, %(name)s, %(address)s, %(country)s, %(assigned_to)s, %(first_name)s, %(last_name)s, %(contact_designation)s, %(contact_email)s, %(contact_office_number)s, %(contact_mobile_number)s, %(billing_name)s, %(billing_address)s, %(billing_email)s, %(billing_terms)s, %(created_by)s, %(updated_by)s, %(created_at)s, %(updated_at)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    ]
+[parameters: [{'id': 1, 'client_code': 'PV01', 'name': 'Manchester Inc', 'address': 'Dummy Address', 'country': '232', 'assigned_to': '2', 'first_name': 'Test', 'last_name': 'User', 'contact_designation': '', 'contact_email': 'Test.User@manchester.com', 'contact_office_number': '+44 1234 5678', 'contact_mobile_number': '+44 9876 5432', 'billing_name': '', 'billing_address': '', 'billing_email': '', 'billing_terms': '30 Days', 'created_by': 1, 'updated_by': 1, 'created_at': datetime.datetime(2025, 10, 24, 13, 38, 35), 'updated_at': datetime.datetime(2025, 10, 27, 15, 49, 7)}, {'id': 2, 'client_code': 'PV02', 'name': 'Koala B2B', 'address': 'St Albans, St Albans GB', 'country': '232', 'assigned_to': '2', 'first_name': 'Cormac', 'last_name': 'Enright', 'contact_designation': 'Head of Lead Generation Delivery', 'contact_email': 'cormac.enright@koalab2b.com', 'contact_office_number': '07380294268', 'contact_mobile_number': '07380294268', 'billing_name': 'NA', 'billing_address': 'NA', 'billing_email': 'NA', 'billing_terms': '30 Days', 'created_by': 3, 'updated_by': 3, 'created_at': datetime.datetime(2025, 10, 24, 13, 48, 45), 'updated_at': datetime.datetime(2025, 11, 5, 5, 53, 54)}, {'id': 3, 'client_code': 'PV03', 'name': 'B2b Intractive', 'address': 'test@test.com', 'country': '232', 'assigned_to': '2', 'first_name': 'A1', 'last_name': 'B1', 'contact_designation': 'A1', 'contact_email': 'test', 'contact_office_number': '123', 'contact_mobile_number': '123', 'billing_name': 'B2B Intractive', 'billing_address': 'ABC', 'billing_email': 'qbc', 'billing_terms': '60 Days', 'created_by': 3, 'updated_by': 3, 'created_at': datetime.datetime(2025, 11, 27, 14, 43, 30), 'updated_at': datetime.datetime(2025, 11, 27, 14, 43, 30)}, {'id': 4, 'client_code': 'PV04', 'name': 'Oneninefive Demand', 'address': 'United Kingdom', 'country': '232', 'assigned_to': '2', 'first_name': 'Lisa', 'last_name': 'Adams', 'contact_designation': 'Director', 'contact_email': 'lisa.adams@oneninefivedemand.com', 'contact_office_number': '+44 7790 358899', 'contact_mobile_number': '+44 7790 358899', 'billing_name': 'Oneninefive Demand', 'billing_address': 'United Kingdom', 'billing_email': 'lisa.adams@oneninefivedemand.com', 'billing_terms': '60 Days', 'created_by': 3, 'updated_by': 3, 'created_at': datetime.datetime(2025, 11, 27, 14, 46, 59), 'updated_at': datetime.datetime(2025, 11, 27, 14, 46, 59)}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-05-07 19:29:24,462 - INFO - SYNC STARTED -> clients
+2026-05-07 19:29:24,462 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 19:29:24,463 - INFO - ROWS FETCHED: 4
+2026-05-07 19:29:24,464 - INFO - 
+                        INSERT INTO "clients"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :client_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 19:29:24,484 - ERROR - SYNC FAILED -> clients
+2026-05-07 19:29:24,484 - ERROR - (psycopg2.errors.ForeignKeyViolation) insert or update on table "clients" violates foreign key constraint "clients_assigned_to_fkey"
+DETAIL:  Key (assigned_to)=(2) is not present in table "users".
+
+[SQL: 
+                        INSERT INTO "clients"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (%(id)s, %(client_code)s, %(name)s, %(address)s, %(country)s, %(assigned_to)s, %(first_name)s, %(last_name)s, %(contact_designation)s, %(contact_email)s, %(contact_office_number)s, %(contact_mobile_number)s, %(billing_name)s, %(billing_address)s, %(billing_email)s, %(billing_terms)s, %(created_by)s, %(updated_by)s, %(created_at)s, %(updated_at)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    ]
+[parameters: [{'id': 1, 'client_code': 'PV01', 'name': 'Manchester Inc', 'address': 'Dummy Address', 'country': '232', 'assigned_to': '2', 'first_name': 'Test', 'last_name': 'User', 'contact_designation': '', 'contact_email': 'Test.User@manchester.com', 'contact_office_number': '+44 1234 5678', 'contact_mobile_number': '+44 9876 5432', 'billing_name': '', 'billing_address': '', 'billing_email': '', 'billing_terms': '30 Days', 'created_by': 1, 'updated_by': 1, 'created_at': datetime.datetime(2025, 10, 24, 13, 38, 35), 'updated_at': datetime.datetime(2025, 10, 27, 15, 49, 7)}, {'id': 2, 'client_code': 'PV02', 'name': 'Koala B2B', 'address': 'St Albans, St Albans GB', 'country': '232', 'assigned_to': '2', 'first_name': 'Cormac', 'last_name': 'Enright', 'contact_designation': 'Head of Lead Generation Delivery', 'contact_email': 'cormac.enright@koalab2b.com', 'contact_office_number': '07380294268', 'contact_mobile_number': '07380294268', 'billing_name': 'NA', 'billing_address': 'NA', 'billing_email': 'NA', 'billing_terms': '30 Days', 'created_by': 3, 'updated_by': 3, 'created_at': datetime.datetime(2025, 10, 24, 13, 48, 45), 'updated_at': datetime.datetime(2025, 11, 5, 5, 53, 54)}, {'id': 3, 'client_code': 'PV03', 'name': 'B2b Intractive', 'address': 'test@test.com', 'country': '232', 'assigned_to': '2', 'first_name': 'A1', 'last_name': 'B1', 'contact_designation': 'A1', 'contact_email': 'test', 'contact_office_number': '123', 'contact_mobile_number': '123', 'billing_name': 'B2B Intractive', 'billing_address': 'ABC', 'billing_email': 'qbc', 'billing_terms': '60 Days', 'created_by': 3, 'updated_by': 3, 'created_at': datetime.datetime(2025, 11, 27, 14, 43, 30), 'updated_at': datetime.datetime(2025, 11, 27, 14, 43, 30)}, {'id': 4, 'client_code': 'PV04', 'name': 'Oneninefive Demand', 'address': 'United Kingdom', 'country': '232', 'assigned_to': '2', 'first_name': 'Lisa', 'last_name': 'Adams', 'contact_designation': 'Director', 'contact_email': 'lisa.adams@oneninefivedemand.com', 'contact_office_number': '+44 7790 358899', 'contact_mobile_number': '+44 7790 358899', 'billing_name': 'Oneninefive Demand', 'billing_address': 'United Kingdom', 'billing_email': 'lisa.adams@oneninefivedemand.com', 'billing_terms': '60 Days', 'created_by': 3, 'updated_by': 3, 'created_at': datetime.datetime(2025, 11, 27, 14, 46, 59), 'updated_at': datetime.datetime(2025, 11, 27, 14, 46, 59)}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-05-07 19:31:42,307 - INFO - SYNC STARTED -> users_list
+2026-05-07 19:31:42,308 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 19:31:42,310 - INFO - ROWS FETCHED: 31
+2026-05-07 19:31:42,311 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 19:31:42,320 - INFO - SYNC COMPLETED -> users_list

@@ -1,0 +1,121 @@
+2026-05-07 19:32:33,344 - INFO - SYNC STARTED -> users
+2026-05-07 19:32:33,345 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 19:32:33,347 - INFO - ROWS FETCHED: 31
+2026-05-07 19:32:33,347 - INFO - 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 19:32:33,352 - ERROR - SYNC FAILED -> users
+2026-05-07 19:32:33,352 - ERROR - (psycopg2.errors.NotNullViolation) null value in column "role_id" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (2, Sahil, Sharma, Sahil.S@prospectvine.com, $2a$08$2X01Qw.ySdDYfZ883GPBBeQ8Z5feKsaNHMR9PhQUp6yN5kfYXb4ca, null, CEO, null, null, 1, t, f, null, null, 2022-03-17 15:14:44, 2022-03-17 20:44:44).
+
+[SQL: 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (%(id)s, %(email)s, %(password)s, %(is_active)s, %(is_deleted)s, %(updated_at)s, %(created_at)s, %(first_name)s, %(last_name)s, %(job_title)s, %(role_id)s, %(department_id)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    ]
+[parameters: [{'id': 1, 'email': 'Prashant.S@prospectvine.com', 'password': '$2a$08$JgjUmhb2Wt9ttYjSWA/Y6.AASU.WQCcGccWL4XcDHsyld3ZiMG59u', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 11, 3, 6, 11), 'created_at': datetime.datetime(2015, 7, 29, 18, 4, 37), 'first_name': 'Super', 'last_name': 'Admin', 'job_title': 'System Administrator', 'role_id': 7, 'department_id': 1}, {'id': 2, 'email': 'Sahil.S@prospectvine.com', 'password': '$2a$08$2X01Qw.ySdDYfZ883GPBBeQ8Z5feKsaNHMR9PhQUp6yN5kfYXb4ca', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2022, 3, 17, 20, 44, 44), 'created_at': datetime.datetime(2022, 3, 17, 15, 14, 44), 'first_name': 'Sahil', 'last_name': 'Sharma', 'job_title': 'CEO', 'role_id': None, 'department_id': 1}, {'id': 3, 'email': 'rajendra.k@prospectvine.com', 'password': '$2a$08$FIQZQNMZ7N1CLTCxNj316ene3hu9JMK75XZw9EMPSJcx9jWGjTgoO', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 3, 55), 'created_at': datetime.datetime(2025, 9, 24, 20, 3, 55), 'first_name': 'Rajendra', 'last_name': 'Kale', 'job_title': 'Ops Manager', 'role_id': 6, 'department_id': 1}, {'id': 4, 'email': 'shubham.b@prospectvine.com', 'password': '$2a$08$vnKxJAiswcxhzhV5vbO6GO4xQAKaZycvF08ZtfLORDQtQPUCw7eDW', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 4, 29), 'created_at': datetime.datetime(2025, 9, 24, 20, 4, 29), 'first_name': 'Shubham', 'last_name': 'Borate', 'job_title': 'SalesOps Manager', 'role_id': 6, 'department_id': 1}, {'id': 5, 'email': 'bilal.s@prospectvine.com', 'password': '$2a$08$9W4of61jKtpYi/atCr1P8O337FtgrnvG/Na.I.4ZsCzuvu6jcdGxW', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 6, 6), 'created_at': datetime.datetime(2025, 9, 24, 20, 6, 6), 'first_name': 'Bilal', 'last_name': 'Shaikh', 'job_title': 'Sr Executive Telemarketing', 'role_id': 1, 'department_id': 8}, {'id': 7, 'email': 'sadiya.s@prospectvine.com', 'password': '$2a$08$FjGKp2Fw0R80gNA7KSG2qeHRzr1pKXXyTd4JS0/29ufN7XPLKyghe', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 30, 9, 24, 55), 'created_at': datetime.datetime(2025, 9, 30, 9, 24, 55), 'first_name': 'Sadiya', 'last_name': 'Shaikh', 'job_title': 'Senior Executive', 'role_id': 1, 'department_id': None}, {'id': 8, 'email': 'gauri.m@prospectvine.com', 'password': '$2a$08$0/IUbtrDTuEyxL7RKYQ/rub.hfxwX61INCaJ6szKdeNw9qPcFZVD2', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 10, 3, 9, 20, 30), 'created_at': datetime.datetime(2025, 10, 3, 9, 20, 30), 'first_name': 'Gauri', 'last_name': 'Mali', 'job_title': 'Data Executive', 'role_id': 1, 'department_id': 4}, {'id': 16, 'email': 'aftab.s@prospectvine.com', 'password': '$2a$08$QhcmLD0GmLh0TBwTIMaxWuRUwFUVdaydKR2I7fAjeOl6EuUQMNwA6', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 11, 10, 11, 23, 50), 'created_at': datetime.datetime(2025, 11, 10, 11, 23, 50), 'first_name': 'Aftab', 'last_name': 'Shaikh', 'job_title': 'Sr Executive Telemarketing', 'role_id': 1, 'department_id': 8}  ... displaying 10 of 31 total bound parameter sets ...  {'id': 38, 'email': 'kaif.s@prospectvine.com', 'password': '$2a$08$Qzj3a1lbGaSc1N6cNEQHhO0Lq5HEWMJxf3zngzZcz5TD8HX5Ol.j2', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2026, 4, 22, 14, 33, 18), 'created_at': datetime.datetime(2026, 4, 22, 14, 33, 18), 'first_name': 'Kaif', 'last_name': 'Shaikh', 'job_title': 'Data Executive', 'role_id': 1, 'department_id': 4}, {'id': 39, 'email': 'swati.m@prospectvine.com', 'password': '$2a$08$NzDfwFyvHFLeJGicvdEPSOtU0CqO8ahxIyrpqoNbsLm4pAIK2TFh.', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2026, 4, 23, 12, 32, 28), 'created_at': datetime.datetime(2026, 4, 23, 12, 32, 28), 'first_name': 'Swati', 'last_name': 'Mundada', 'job_title': 'Quality Analyst', 'role_id': 1, 'department_id': 6}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-05-07 19:35:12,009 - INFO - SYNC STARTED -> users
+2026-05-07 19:35:12,011 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 19:35:12,012 - INFO - ROWS FETCHED: 31
+2026-05-07 19:35:12,012 - INFO - 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 19:35:12,015 - ERROR - SYNC FAILED -> users
+2026-05-07 19:35:12,016 - ERROR - (psycopg2.errors.NotNullViolation) null value in column "department_id" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (7, Sadiya, Shaikh, sadiya.s@prospectvine.com, $2a$08$FjGKp2Fw0R80gNA7KSG2qeHRzr1pKXXyTd4JS0/29ufN7XPLKyghe, null, Senior Executive, null, 1, null, t, f, null, null, 2025-09-30 09:24:55, 2025-09-30 09:24:55).
+
+[SQL: 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (%(id)s, %(email)s, %(password)s, %(is_active)s, %(is_deleted)s, %(updated_at)s, %(created_at)s, %(first_name)s, %(last_name)s, %(job_title)s, %(role_id)s, %(department_id)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    ]
+[parameters: [{'id': 1, 'email': 'Prashant.S@prospectvine.com', 'password': '$2a$08$JgjUmhb2Wt9ttYjSWA/Y6.AASU.WQCcGccWL4XcDHsyld3ZiMG59u', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 11, 3, 6, 11), 'created_at': datetime.datetime(2015, 7, 29, 18, 4, 37), 'first_name': 'Super', 'last_name': 'Admin', 'job_title': 'System Administrator', 'role_id': 7, 'department_id': 1}, {'id': 2, 'email': 'Sahil.S@prospectvine.com', 'password': '$2a$08$2X01Qw.ySdDYfZ883GPBBeQ8Z5feKsaNHMR9PhQUp6yN5kfYXb4ca', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2022, 3, 17, 20, 44, 44), 'created_at': datetime.datetime(2022, 3, 17, 15, 14, 44), 'first_name': 'Sahil', 'last_name': 'Sharma', 'job_title': 'CEO', 'role_id': 8, 'department_id': 1}, {'id': 3, 'email': 'rajendra.k@prospectvine.com', 'password': '$2a$08$FIQZQNMZ7N1CLTCxNj316ene3hu9JMK75XZw9EMPSJcx9jWGjTgoO', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 3, 55), 'created_at': datetime.datetime(2025, 9, 24, 20, 3, 55), 'first_name': 'Rajendra', 'last_name': 'Kale', 'job_title': 'Ops Manager', 'role_id': 6, 'department_id': 1}, {'id': 4, 'email': 'shubham.b@prospectvine.com', 'password': '$2a$08$vnKxJAiswcxhzhV5vbO6GO4xQAKaZycvF08ZtfLORDQtQPUCw7eDW', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 4, 29), 'created_at': datetime.datetime(2025, 9, 24, 20, 4, 29), 'first_name': 'Shubham', 'last_name': 'Borate', 'job_title': 'SalesOps Manager', 'role_id': 6, 'department_id': 1}, {'id': 5, 'email': 'bilal.s@prospectvine.com', 'password': '$2a$08$9W4of61jKtpYi/atCr1P8O337FtgrnvG/Na.I.4ZsCzuvu6jcdGxW', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 6, 6), 'created_at': datetime.datetime(2025, 9, 24, 20, 6, 6), 'first_name': 'Bilal', 'last_name': 'Shaikh', 'job_title': 'Sr Executive Telemarketing', 'role_id': 1, 'department_id': 8}, {'id': 7, 'email': 'sadiya.s@prospectvine.com', 'password': '$2a$08$FjGKp2Fw0R80gNA7KSG2qeHRzr1pKXXyTd4JS0/29ufN7XPLKyghe', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 30, 9, 24, 55), 'created_at': datetime.datetime(2025, 9, 30, 9, 24, 55), 'first_name': 'Sadiya', 'last_name': 'Shaikh', 'job_title': 'Senior Executive', 'role_id': 1, 'department_id': None}, {'id': 8, 'email': 'gauri.m@prospectvine.com', 'password': '$2a$08$0/IUbtrDTuEyxL7RKYQ/rub.hfxwX61INCaJ6szKdeNw9qPcFZVD2', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 10, 3, 9, 20, 30), 'created_at': datetime.datetime(2025, 10, 3, 9, 20, 30), 'first_name': 'Gauri', 'last_name': 'Mali', 'job_title': 'Data Executive', 'role_id': 1, 'department_id': 4}, {'id': 16, 'email': 'aftab.s@prospectvine.com', 'password': '$2a$08$QhcmLD0GmLh0TBwTIMaxWuRUwFUVdaydKR2I7fAjeOl6EuUQMNwA6', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 11, 10, 11, 23, 50), 'created_at': datetime.datetime(2025, 11, 10, 11, 23, 50), 'first_name': 'Aftab', 'last_name': 'Shaikh', 'job_title': 'Sr Executive Telemarketing', 'role_id': 1, 'department_id': 8}  ... displaying 10 of 31 total bound parameter sets ...  {'id': 38, 'email': 'kaif.s@prospectvine.com', 'password': '$2a$08$Qzj3a1lbGaSc1N6cNEQHhO0Lq5HEWMJxf3zngzZcz5TD8HX5Ol.j2', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2026, 4, 22, 14, 33, 18), 'created_at': datetime.datetime(2026, 4, 22, 14, 33, 18), 'first_name': 'Kaif', 'last_name': 'Shaikh', 'job_title': 'Data Executive', 'role_id': 1, 'department_id': 4}, {'id': 39, 'email': 'swati.m@prospectvine.com', 'password': '$2a$08$NzDfwFyvHFLeJGicvdEPSOtU0CqO8ahxIyrpqoNbsLm4pAIK2TFh.', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2026, 4, 23, 12, 32, 28), 'created_at': datetime.datetime(2026, 4, 23, 12, 32, 28), 'first_name': 'Swati', 'last_name': 'Mundada', 'job_title': 'Quality Analyst', 'role_id': 1, 'department_id': 6}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-05-07 19:35:40,924 - INFO - SYNC STARTED -> users
+2026-05-07 19:35:40,925 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 19:35:40,927 - INFO - ROWS FETCHED: 31
+2026-05-07 19:35:40,927 - INFO - 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 19:35:40,930 - ERROR - SYNC FAILED -> users
+2026-05-07 19:35:40,930 - ERROR - (psycopg2.errors.NotNullViolation) null value in column "department_id" of relation "users" violates not-null constraint
+DETAIL:  Failing row contains (7, Sadiya, Shaikh, sadiya.s@prospectvine.com, $2a$08$FjGKp2Fw0R80gNA7KSG2qeHRzr1pKXXyTd4JS0/29ufN7XPLKyghe, null, Senior Executive, null, 1, null, t, f, null, null, 2025-09-30 09:24:55, 2025-09-30 09:24:55).
+
+[SQL: 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (%(id)s, %(email)s, %(password)s, %(is_active)s, %(is_deleted)s, %(updated_at)s, %(created_at)s, %(first_name)s, %(last_name)s, %(job_title)s, %(role_id)s, %(department_id)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    ]
+[parameters: [{'id': 1, 'email': 'Prashant.S@prospectvine.com', 'password': '$2a$08$JgjUmhb2Wt9ttYjSWA/Y6.AASU.WQCcGccWL4XcDHsyld3ZiMG59u', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 11, 3, 6, 11), 'created_at': datetime.datetime(2015, 7, 29, 18, 4, 37), 'first_name': 'Super', 'last_name': 'Admin', 'job_title': 'System Administrator', 'role_id': 7, 'department_id': 1}, {'id': 2, 'email': 'Sahil.S@prospectvine.com', 'password': '$2a$08$2X01Qw.ySdDYfZ883GPBBeQ8Z5feKsaNHMR9PhQUp6yN5kfYXb4ca', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2022, 3, 17, 20, 44, 44), 'created_at': datetime.datetime(2022, 3, 17, 15, 14, 44), 'first_name': 'Sahil', 'last_name': 'Sharma', 'job_title': 'CEO', 'role_id': 8, 'department_id': 1}, {'id': 3, 'email': 'rajendra.k@prospectvine.com', 'password': '$2a$08$FIQZQNMZ7N1CLTCxNj316ene3hu9JMK75XZw9EMPSJcx9jWGjTgoO', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 3, 55), 'created_at': datetime.datetime(2025, 9, 24, 20, 3, 55), 'first_name': 'Rajendra', 'last_name': 'Kale', 'job_title': 'Ops Manager', 'role_id': 6, 'department_id': 1}, {'id': 4, 'email': 'shubham.b@prospectvine.com', 'password': '$2a$08$vnKxJAiswcxhzhV5vbO6GO4xQAKaZycvF08ZtfLORDQtQPUCw7eDW', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 4, 29), 'created_at': datetime.datetime(2025, 9, 24, 20, 4, 29), 'first_name': 'Shubham', 'last_name': 'Borate', 'job_title': 'SalesOps Manager', 'role_id': 6, 'department_id': 1}, {'id': 5, 'email': 'bilal.s@prospectvine.com', 'password': '$2a$08$9W4of61jKtpYi/atCr1P8O337FtgrnvG/Na.I.4ZsCzuvu6jcdGxW', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 24, 20, 6, 6), 'created_at': datetime.datetime(2025, 9, 24, 20, 6, 6), 'first_name': 'Bilal', 'last_name': 'Shaikh', 'job_title': 'Sr Executive Telemarketing', 'role_id': 1, 'department_id': 8}, {'id': 7, 'email': 'sadiya.s@prospectvine.com', 'password': '$2a$08$FjGKp2Fw0R80gNA7KSG2qeHRzr1pKXXyTd4JS0/29ufN7XPLKyghe', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 9, 30, 9, 24, 55), 'created_at': datetime.datetime(2025, 9, 30, 9, 24, 55), 'first_name': 'Sadiya', 'last_name': 'Shaikh', 'job_title': 'Senior Executive', 'role_id': 1, 'department_id': None}, {'id': 8, 'email': 'gauri.m@prospectvine.com', 'password': '$2a$08$0/IUbtrDTuEyxL7RKYQ/rub.hfxwX61INCaJ6szKdeNw9qPcFZVD2', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 10, 3, 9, 20, 30), 'created_at': datetime.datetime(2025, 10, 3, 9, 20, 30), 'first_name': 'Gauri', 'last_name': 'Mali', 'job_title': 'Data Executive', 'role_id': 1, 'department_id': 4}, {'id': 16, 'email': 'aftab.s@prospectvine.com', 'password': '$2a$08$QhcmLD0GmLh0TBwTIMaxWuRUwFUVdaydKR2I7fAjeOl6EuUQMNwA6', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2025, 11, 10, 11, 23, 50), 'created_at': datetime.datetime(2025, 11, 10, 11, 23, 50), 'first_name': 'Aftab', 'last_name': 'Shaikh', 'job_title': 'Sr Executive Telemarketing', 'role_id': 1, 'department_id': 8}  ... displaying 10 of 31 total bound parameter sets ...  {'id': 38, 'email': 'kaif.s@prospectvine.com', 'password': '$2a$08$Qzj3a1lbGaSc1N6cNEQHhO0Lq5HEWMJxf3zngzZcz5TD8HX5Ol.j2', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2026, 4, 22, 14, 33, 18), 'created_at': datetime.datetime(2026, 4, 22, 14, 33, 18), 'first_name': 'Kaif', 'last_name': 'Shaikh', 'job_title': 'Data Executive', 'role_id': 1, 'department_id': 4}, {'id': 39, 'email': 'swati.m@prospectvine.com', 'password': '$2a$08$NzDfwFyvHFLeJGicvdEPSOtU0CqO8ahxIyrpqoNbsLm4pAIK2TFh.', 'is_active': True, 'is_deleted': False, 'updated_at': datetime.datetime(2026, 4, 23, 12, 32, 28), 'created_at': datetime.datetime(2026, 4, 23, 12, 32, 28), 'first_name': 'Swati', 'last_name': 'Mundada', 'job_title': 'Quality Analyst', 'role_id': 1, 'department_id': 6}]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-05-07 19:37:43,683 - INFO - SYNC STARTED -> users
+2026-05-07 19:37:43,684 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 19:37:43,686 - INFO - ROWS FETCHED: 31
+2026-05-07 19:37:43,686 - INFO - 
+                        INSERT INTO "users"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 19:37:43,694 - INFO - SYNC COMPLETED -> users
+2026-05-07 19:39:18,240 - INFO - SYNC STARTED -> users
+2026-05-07 19:39:18,241 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 19:39:18,242 - INFO - ROWS FETCHED: 0
+2026-05-07 19:39:18,242 - INFO - NO NEW ROWS -> users
+2026-05-07 19:39:18,242 - INFO - SYNC STARTED -> clients
+2026-05-07 19:39:18,242 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 19:39:18,243 - INFO - ROWS FETCHED: 4
+2026-05-07 19:39:18,243 - INFO - 
+                        INSERT INTO "clients"
+                        (id, client_code, name, address, country, assigned_to, first_name, last_name, contact_designation, contact_email, contact_office_number, contact_mobile_number, billing_name, billing_address, billing_email, billing_terms, created_by, updated_by, created_at, updated_at)
+                        VALUES (:id, :client_code, :name, :address, :country, :assigned_to, :first_name, :last_name, :contact_designation, :contact_email, :contact_office_number, :contact_mobile_number, :billing_name, :billing_address, :billing_email, :billing_terms, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        client_code = EXCLUDED.client_code, name = EXCLUDED.name, address = EXCLUDED.address, country = EXCLUDED.country, assigned_to = EXCLUDED.assigned_to, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, contact_designation = EXCLUDED.contact_designation, contact_email = EXCLUDED.contact_email, contact_office_number = EXCLUDED.contact_office_number, contact_mobile_number = EXCLUDED.contact_mobile_number, billing_name = EXCLUDED.billing_name, billing_address = EXCLUDED.billing_address, billing_email = EXCLUDED.billing_email, billing_terms = EXCLUDED.billing_terms, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 19:39:18,250 - INFO - SYNC COMPLETED -> clients

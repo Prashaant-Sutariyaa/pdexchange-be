@@ -1,0 +1,20 @@
+2026-05-07 14:14:02,088 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 14:14:02,088 - INFO - TRUNCATE TABLE "users_list"
+2026-05-07 14:14:02,091 - INFO - 
+                        SELECT id, email, activated, password, banned, modified, created
+                        FROM users
+                    
+2026-05-07 14:14:02,092 - INFO - ROWS FETCHED: 31
+2026-05-07 14:14:02,092 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, is_active, password, is_deleted, updated_at, created_at)
+                        VALUES (:id, :email, :is_active, :password, :is_deleted, :updated_at, :created_at)
+                    
+2026-05-07 14:14:02,099 - INFO - SYNC COMPLETED: users
+2026-05-07 14:15:45,819 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 14:15:45,819 - INFO - 
+                        SELECT id, email, activated, password, banned, modified, created
+                        FROM users
+                        WHERE modified > :last_sync
+                    
+2026-05-07 14:15:45,820 - INFO - ROWS FETCHED: 0

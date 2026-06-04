@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentinel — Job Report</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 28px 20px 60px;
+            color: #1e293b;
+        }
+
+        .shell {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* ── Top bar ── */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0d9488;
+        }
+
+        .sys-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: #0d9488;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .topbar-right {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        /* ── Page title ── */
+        .page-title {
+            margin-bottom: 22px;
+        }
+
+        .page-title h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+        }
+
+        .page-title .sub {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .page-title .sub strong {
+            color: #0d9488;
+            font-weight: 600;
+        }
+
+        /* ── Stat strip ── */
+        .stat-strip {
+            display: flex;
+            gap: 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .stat-item {
+            flex: 1;
+            padding: 14px 20px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* ── Section wrapper ── */
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .section-head h2 {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+
+        .section-head::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        /* ── Info table ── */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: 13px;
+        }
+
+        .info-table tr:not(:last-child) td,
+        .info-table tr:not(:last-child) th {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-table th {
+            width: 150px;
+            padding: 10px 16px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #94a3b8;
+            font-weight: 600;
+            text-align: left;
+            background: #f8fafc;
+        }
+
+        .info-table td {
+            padding: 10px 16px;
+            color: #1e293b;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+        }
+
+        .info-table td.teal {
+            color: #0d9488;
+        }
+
+        /* ── Batch card ── */
+        .batch-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .batch-card:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Batch table ── */
+        .batch-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .batch-table thead tr {
+            background: #f1f5f9;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .batch-table thead th {
+            padding: 10px 18px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #64748b;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .batch-table thead th:not(:first-child) {
+            text-align: right;
+        }
+
+        /* Group header rows */
+        .batch-table tr.group-row td {
+            padding: 7px 18px 5px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0d9488;
+            background: #f0fdfa;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .batch-table tr.group-row:first-child td {
+            border-top: none;
+        }
+
+        /* Data rows */
+        .batch-table tbody tr.data-row {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .batch-table tbody tr.data-row:last-child {
+            border-bottom: none;
+        }
+
+        .batch-table tbody tr.data-row td {
+            padding: 9px 18px;
+            color: #1e293b;
+        }
+
+        .batch-table tbody tr.data-row td:first-child {
+            color: #475569;
+            font-size: 12px;
+        }
+
+        .batch-table tbody tr.data-row td:not(:first-child) {
+            text-align: right;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            margin-top: 36px;
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            font-family: 'IBM Plex Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+
+        <!-- Top bar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <div class="dot"></div>
+                <span class="sys-label">ProspectVine · Sentinel</span>
+            </div>
+            <div class="topbar-right">{{ completed_at }}</div>
+        </div>
+
+        <!-- Page title -->
+        <div class="page-title">
+            <h1>Sentinel Job Completed</h1>
+            <div class="sub">Department: <strong>{{ department }}</strong></div>
+        </div>
+
+        <!-- Stat strip -->
+        <div class="stat-strip">
+            <div class="stat-item">
+                <div class="stat-label">Total Rows</div>
+                <div class="stat-value">{{ overall_total }}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Valid Rows</div>
+                <div class="stat-value">{{ overall_valid }}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Invalid Rows</div>
+                <div class="stat-value">{{ overall_invalid }}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Batches</div>
+                <div class="stat-value">{{ batch_count }}</div>
+            </div>
+        </div>
+
+        <!-- Job Information -->
+        <div class="section">
+            <div class="section-head">
+                <h2>Job Information</h2>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <th>Department</th>
+                    <td class="teal">{{ department }}</td>
+                </tr>
+                <tr>
+                    <th>Uploaded By</th>
+                    <td>{{ uploaded_by }}</td>
+                </tr>
+                <tr>
+                    <th>Campaign Codes</th>
+                    <td>
+                        {% set campaigns = [] %}
+                        {% for batch in batch_summaries %}
+                            {% if batch.campaign_code not in campaigns %}
+                                {% set _ = campaigns.append(batch.campaign_code) %}
+                            {% endif %}
+                        {% endfor %}
+                        {{ campaigns | join(', ') }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Segment Codes</th>
+                    <td>
+                        {% set segments = [] %}
+                        {% for batch in batch_summaries %}
+                            {% if batch.segment_code not in segments %}
+                                {% set _ = segments.append(batch.segment_code) %}
+                            {% endif %}
+                        {% endfor %}
+                        {{ segments | join(', ') }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Batch Codes</th>
+                    <td>
+                        {% for batch in batch_summaries %}
+                            {{ batch.batch_code }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Batch Processing Summary -->
+        <div class="section">
+            <div class="section-head">
+                <h2>Batch Processing Summary</h2>
+            </div>
+            <div class="batch-card">
+                <table class="batch-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            {% for batch in batch_summaries %}
+                                <th>{{ batch.batch_code }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <!-- DataOps -->
+                        <tr class="group-row">
+                            <td colspan="{{ batch_count + 1 }}">DataOps</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>Total</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dataops_total }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Pending</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dataops_pending }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Valid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dataops_valid }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Invalid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dataops_invalid }}</td>{% endfor %}
+                        </tr>
+
+                        <!-- Email -->
+                        <tr class="group-row">
+                            <td colspan="{{ batch_count + 1 }}">Email</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>Total</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.email_total }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Pending</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.email_pending }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Valid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.email_valid }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Invalid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.email_invalid }}</td>{% endfor %}
+                        </tr>
+
+                        <!-- Quality -->
+                        <tr class="group-row">
+                            <td colspan="{{ batch_count + 1 }}">Quality</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>Total</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.quality_total }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Pending</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.quality_pending }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Valid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.quality_valid }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Invalid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.quality_invalid }}</td>{% endfor %}
+                        </tr>
+
+                        <!-- DBR -->
+                        <tr class="group-row">
+                            <td colspan="{{ batch_count + 1 }}">DBR</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>Total</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dbr_total }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Pending</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dbr_pending }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Valid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dbr_valid }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Invalid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.dbr_invalid }}</td>{% endfor %}
+                        </tr>
+
+                        <!-- Voice Verification -->
+                        <tr class="group-row">
+                            <td colspan="{{ batch_count + 1 }}">Voice Verification</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>Total</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.vv_total }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Pending</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.vv_pending }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Valid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.vv_valid }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Invalid</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.vv_invalid }}</td>{% endfor %}
+                        </tr>
+
+                        <!-- MIS -->
+                        <tr class="group-row">
+                            <td colspan="{{ batch_count + 1 }}">MIS</td>
+                        </tr>
+                        <tr class="data-row">
+                            <td>Total</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_total }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Pending</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_pending }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Delivered</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_delivered }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Accepted</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_accepted }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Client Rejected</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_client_rejected }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>RTD</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_rtd }}</td>{% endfor %}
+                        </tr>
+                        <tr class="data-row">
+                            <td>Internal Rejected</td>
+                            {% for batch in batch_summaries %}<td>{{ batch.mis_internal_rejected }}</td>{% endfor %}
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">ProspectVine Sentinel Notification System</div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+2026-05-18 14:42:25,754 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-186' coro=<process_job() done, defined at D:\backend\bakend-app\app\services\sentinel_processor_service.py:43> exception=PendingRollbackError('This Session\'s transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.StringDataRightTruncation) value too long for type character(5)\n\n[SQL: INSERT INTO campaign_segment_batches (batch_code, campaign_code, segment_code, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, completed_at, created_at, created_by, updated_at, updated_by) VALUES (%(batch_code)s, %(campaign_code)s, %(segment_code)s, %(dataops_valid)s, %(dataops_invalid)s, %(dataops_total)s, %(email_valid)s, %(email_invalid)s, %(email_total)s, %(quality_valid)s, %(quality_invalid)s, %(quality_total)s, %(dbr_valid)s, %(dbr_invalid)s, %(dbr_total)s, %(vv_valid)s, %(vv_invalid)s, %(vv_total)s, %(mis_valid)s, %(mis_invalid)s, %(mis_total)s, %(priority)s, %(status)s, %(completed_at)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s) RETURNING campaign_segment_batches.id]\n[parameters: {\'batch_code\': None, \'campaign_code\': \'["PV01_100426_0058"]\', \'segment_code\': \'["0007A"]\', \'dataops_valid\': 0, \'dataops_invalid\': 0, \'dataops_total\': 0, \'email_valid\': 0, \'email_invalid\': 0, \'email_total\': 0, \'quality_valid\': 0, \'quality_invalid\': 0, \'quality_total\': 0, \'dbr_valid\': 0, \'dbr_invalid\': 0, \'dbr_total\': 0, \'vv_valid\': 0, \'vv_invalid\': 0, \'vv_total\': 0, \'mis_valid\': 0, \'mis_invalid\': 0, \'mis_total\': 0, \'priority\': \'medium\', \'status\': \'In Process\', \'completed_at\': None, \'created_at\': datetime.datetime(2026, 5, 18, 9, 12, 25, 726490), \'created_by\': 36, \'updated_at\': None, \'updated_by\': None}]\n(Background on this error at: https://sqlalche.me/e/20/9h9h)')>
+Traceback (most recent call last):
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character(5)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\backend\bakend-app\app\services\sentinel_processor_service.py", line 111, in process_job
+    batch = create_batch(
+        db=db,
+    ...<2 lines>...
+        user_id=job.created_by,
+    )
+  File "D:\backend\bakend-app\app\services\sentinel_batch_service.py", line 71, in create_batch
+    db.flush()
+    ~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4331, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4466, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4427, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.DataError: (psycopg2.errors.StringDataRightTruncation) value too long for type character(5)
+
+[SQL: INSERT INTO campaign_segment_batches (batch_code, campaign_code, segment_code, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, completed_at, created_at, created_by, updated_at, updated_by) VALUES (%(batch_code)s, %(campaign_code)s, %(segment_code)s, %(dataops_valid)s, %(dataops_invalid)s, %(dataops_total)s, %(email_valid)s, %(email_invalid)s, %(email_total)s, %(quality_valid)s, %(quality_invalid)s, %(quality_total)s, %(dbr_valid)s, %(dbr_invalid)s, %(dbr_total)s, %(vv_valid)s, %(vv_invalid)s, %(vv_total)s, %(mis_valid)s, %(mis_invalid)s, %(mis_total)s, %(priority)s, %(status)s, %(completed_at)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s) RETURNING campaign_segment_batches.id]
+[parameters: {'batch_code': None, 'campaign_code': '["PV01_100426_0058"]', 'segment_code': '["0007A"]', 'dataops_valid': 0, 'dataops_invalid': 0, 'dataops_total': 0, 'email_valid': 0, 'email_invalid': 0, 'email_total': 0, 'quality_valid': 0, 'quality_invalid': 0, 'quality_total': 0, 'dbr_valid': 0, 'dbr_invalid': 0, 'dbr_total': 0, 'vv_valid': 0, 'vv_invalid': 0, 'vv_total': 0, 'mis_valid': 0, 'mis_invalid': 0, 'mis_total': 0, 'priority': 'medium', 'status': 'In Process', 'completed_at': None, 'created_at': datetime.datetime(2026, 5, 18, 9, 12, 25, 726490), 'created_by': 36, 'updated_at': None, 'updated_by': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\backend\bakend-app\app\services\sentinel_processor_service.py", line 252, in process_job
+    mark_job_failed(
+    ~~~~~~~~~~~~~~~^
+        db,
+        ^^^
+        job,
+        ^^^^
+        str(error),
+        ^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\app\services\sentinel_job_service.py", line 92, in mark_job_failed
+    db.commit()
+    ~~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 101, in _go
+    self._raise_for_prerequisite_state(fn.__name__, current_state)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 971, in _raise_for_prerequisite_state
+    raise sa_exc.PendingRollbackError(
+    ...<6 lines>...
+    )
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.StringDataRightTruncation) value too long for type character(5)
+
+[SQL: INSERT INTO campaign_segment_batches (batch_code, campaign_code, segment_code, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, completed_at, created_at, created_by, updated_at, updated_by) VALUES (%(batch_code)s, %(campaign_code)s, %(segment_code)s, %(dataops_valid)s, %(dataops_invalid)s, %(dataops_total)s, %(email_valid)s, %(email_invalid)s, %(email_total)s, %(quality_valid)s, %(quality_invalid)s, %(quality_total)s, %(dbr_valid)s, %(dbr_invalid)s, %(dbr_total)s, %(vv_valid)s, %(vv_invalid)s, %(vv_total)s, %(mis_valid)s, %(mis_invalid)s, %(mis_total)s, %(priority)s, %(status)s, %(completed_at)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s) RETURNING campaign_segment_batches.id]
+[parameters: {'batch_code': None, 'campaign_code': '["PV01_100426_0058"]', 'segment_code': '["0007A"]', 'dataops_valid': 0, 'dataops_invalid': 0, 'dataops_total': 0, 'email_valid': 0, 'email_invalid': 0, 'email_total': 0, 'quality_valid': 0, 'quality_invalid': 0, 'quality_total': 0, 'dbr_valid': 0, 'dbr_invalid': 0, 'dbr_total': 0, 'vv_valid': 0, 'vv_invalid': 0, 'vv_total': 0, 'mis_valid': 0, 'mis_invalid': 0, 'mis_total': 0, 'priority': 'medium', 'status': 'In Process', 'completed_at': None, 'created_at': datetime.datetime(2026, 5, 18, 9, 12, 25, 726490), 'created_by': 36, 'updated_at': None, 'updated_by': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h) (Background on this error at: https://sqlalche.me/e/20/7s2a)
+2026-05-18 14:46:21,506 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-200' coro=<process_job() done, defined at D:\backend\bakend-app\app\services\sentinel_processor_service.py:43> exception=PendingRollbackError('This Session\'s transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.StringDataRightTruncation) value too long for type character(5)\n\n[SQL: INSERT INTO campaign_segment_batches (batch_code, campaign_code, segment_code, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, completed_at, created_at, created_by, updated_at, updated_by) VALUES (%(batch_code)s, %(campaign_code)s, %(segment_code)s, %(dataops_valid)s, %(dataops_invalid)s, %(dataops_total)s, %(email_valid)s, %(email_invalid)s, %(email_total)s, %(quality_valid)s, %(quality_invalid)s, %(quality_total)s, %(dbr_valid)s, %(dbr_invalid)s, %(dbr_total)s, %(vv_valid)s, %(vv_invalid)s, %(vv_total)s, %(mis_valid)s, %(mis_invalid)s, %(mis_total)s, %(priority)s, %(status)s, %(completed_at)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s) RETURNING campaign_segment_batches.id]\n[parameters: {\'batch_code\': None, \'campaign_code\': \'"PV01_100426_0058"\', \'segment_code\': \'"0007A"\', \'dataops_valid\': 0, \'dataops_invalid\': 0, \'dataops_total\': 0, \'email_valid\': 0, \'email_invalid\': 0, \'email_total\': 0, \'quality_valid\': 0, \'quality_invalid\': 0, \'quality_total\': 0, \'dbr_valid\': 0, \'dbr_invalid\': 0, \'dbr_total\': 0, \'vv_valid\': 0, \'vv_invalid\': 0, \'vv_total\': 0, \'mis_valid\': 0, \'mis_invalid\': 0, \'mis_total\': 0, \'priority\': \'medium\', \'status\': \'In Process\', \'completed_at\': None, \'created_at\': datetime.datetime(2026, 5, 18, 9, 16, 21, 499611), \'created_by\': 36, \'updated_at\': None, \'updated_by\': None}]\n(Background on this error at: https://sqlalche.me/e/20/9h9h)')>
+Traceback (most recent call last):
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character(5)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\backend\bakend-app\app\services\sentinel_processor_service.py", line 111, in process_job
+    batch = create_batch(
+        db=db,
+    ...<2 lines>...
+        user_id=job.created_by,
+    )
+  File "D:\backend\bakend-app\app\services\sentinel_batch_service.py", line 71, in create_batch
+    db.flush()
+    ~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4331, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4466, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4427, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+        statement,
+        params,
+        execution_options=execution_options,
+    )
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.DataError: (psycopg2.errors.StringDataRightTruncation) value too long for type character(5)
+
+[SQL: INSERT INTO campaign_segment_batches (batch_code, campaign_code, segment_code, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, completed_at, created_at, created_by, updated_at, updated_by) VALUES (%(batch_code)s, %(campaign_code)s, %(segment_code)s, %(dataops_valid)s, %(dataops_invalid)s, %(dataops_total)s, %(email_valid)s, %(email_invalid)s, %(email_total)s, %(quality_valid)s, %(quality_invalid)s, %(quality_total)s, %(dbr_valid)s, %(dbr_invalid)s, %(dbr_total)s, %(vv_valid)s, %(vv_invalid)s, %(vv_total)s, %(mis_valid)s, %(mis_invalid)s, %(mis_total)s, %(priority)s, %(status)s, %(completed_at)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s) RETURNING campaign_segment_batches.id]
+[parameters: {'batch_code': None, 'campaign_code': '"PV01_100426_0058"', 'segment_code': '"0007A"', 'dataops_valid': 0, 'dataops_invalid': 0, 'dataops_total': 0, 'email_valid': 0, 'email_invalid': 0, 'email_total': 0, 'quality_valid': 0, 'quality_invalid': 0, 'quality_total': 0, 'dbr_valid': 0, 'dbr_invalid': 0, 'dbr_total': 0, 'vv_valid': 0, 'vv_invalid': 0, 'vv_total': 0, 'mis_valid': 0, 'mis_invalid': 0, 'mis_total': 0, 'priority': 'medium', 'status': 'In Process', 'completed_at': None, 'created_at': datetime.datetime(2026, 5, 18, 9, 16, 21, 499611), 'created_by': 36, 'updated_at': None, 'updated_by': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\backend\bakend-app\app\services\sentinel_processor_service.py", line 252, in process_job
+    mark_job_failed(
+    ~~~~~~~~~~~~~~~^
+        db,
+        ^^^
+        job,
+        ^^^^
+        str(error),
+        ^^^^^^^^^^^
+    )
+    ^
+  File "D:\backend\bakend-app\app\services\sentinel_job_service.py", line 92, in mark_job_failed
+    db.commit()
+    ~~~~~~~~~^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2030, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 101, in _go
+    self._raise_for_prerequisite_state(fn.__name__, current_state)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\backend\bakend-app\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 971, in _raise_for_prerequisite_state
+    raise sa_exc.PendingRollbackError(
+    ...<6 lines>...
+    )
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.StringDataRightTruncation) value too long for type character(5)
+
+[SQL: INSERT INTO campaign_segment_batches (batch_code, campaign_code, segment_code, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, completed_at, created_at, created_by, updated_at, updated_by) VALUES (%(batch_code)s, %(campaign_code)s, %(segment_code)s, %(dataops_valid)s, %(dataops_invalid)s, %(dataops_total)s, %(email_valid)s, %(email_invalid)s, %(email_total)s, %(quality_valid)s, %(quality_invalid)s, %(quality_total)s, %(dbr_valid)s, %(dbr_invalid)s, %(dbr_total)s, %(vv_valid)s, %(vv_invalid)s, %(vv_total)s, %(mis_valid)s, %(mis_invalid)s, %(mis_total)s, %(priority)s, %(status)s, %(completed_at)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s) RETURNING campaign_segment_batches.id]
+[parameters: {'batch_code': None, 'campaign_code': '"PV01_100426_0058"', 'segment_code': '"0007A"', 'dataops_valid': 0, 'dataops_invalid': 0, 'dataops_total': 0, 'email_valid': 0, 'email_invalid': 0, 'email_total': 0, 'quality_valid': 0, 'quality_invalid': 0, 'quality_total': 0, 'dbr_valid': 0, 'dbr_invalid': 0, 'dbr_total': 0, 'vv_valid': 0, 'vv_invalid': 0, 'vv_total': 0, 'mis_valid': 0, 'mis_invalid': 0, 'mis_total': 0, 'priority': 'medium', 'status': 'In Process', 'completed_at': None, 'created_at': datetime.datetime(2026, 5, 18, 9, 16, 21, 499611), 'created_by': 36, 'updated_at': None, 'updated_by': None}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h) (Background on this error at: https://sqlalche.me/e/20/7s2a)

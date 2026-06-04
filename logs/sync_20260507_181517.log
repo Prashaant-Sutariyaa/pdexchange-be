@@ -1,0 +1,17 @@
+2026-05-07 18:15:19,306 - INFO - SYNC STARTED -> users_list
+2026-05-07 18:15:19,307 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 18:15:19,308 - INFO - ROWS FETCHED: 0
+2026-05-07 18:15:19,309 - INFO - NO NEW ROWS -> users_list
+2026-05-07 18:15:19,309 - INFO - SYNC STARTED -> campaign_data
+2026-05-07 18:15:19,309 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 18:15:19,314 - INFO - ROWS FETCHED: 0
+2026-05-07 18:15:19,314 - INFO - NO NEW ROWS -> campaign_data
+2026-05-07 18:15:19,314 - INFO - SYNC STARTED -> client_data
+2026-05-07 18:15:19,314 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+2026-05-07 18:15:19,315 - INFO - ROWS FETCHED: 4
+2026-05-07 18:15:19,316 - ERROR - SYNC FAILED -> client_data
+2026-05-07 18:15:19,316 - ERROR - cannot access local variable 'value' where it is not associated with a value

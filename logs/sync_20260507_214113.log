@@ -1,0 +1,44 @@
+2026-05-07 21:48:19,502 - INFO - SYNC STARTED -> users
+2026-05-07 21:48:19,504 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 21:48:19,528 - INFO - ROWS FETCHED: 0
+2026-05-07 21:48:19,528 - INFO - NO NEW ROWS -> users
+2026-05-07 21:48:19,528 - INFO - SYNC STARTED -> clients
+2026-05-07 21:48:19,528 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 21:48:19,530 - INFO - ROWS FETCHED: 0
+2026-05-07 21:48:19,530 - INFO - NO NEW ROWS -> clients
+2026-05-07 21:48:19,530 - INFO - SYNC STARTED -> vendors
+2026-05-07 21:48:19,530 - INFO - SELECT v.id, v.name, v.code, v.address, v.country, v.assigned_to, v.contact_first_name, v.contact_last_name, v.contact_email, v.contact_office_no, v.contact_mobile_no, v.contact_designation, v.billing_name, v.billing_email, v.billing_address, v.billing_terms, v.status, v.created_by, v.modified_by, v.created_on, v.modified_on FROM vendors v
+                            WHERE v.modified_on > :last_sync
+                        
+2026-05-07 21:48:19,533 - INFO - ROWS FETCHED: 0
+2026-05-07 21:48:19,533 - INFO - NO NEW ROWS -> vendors
+2026-05-07 21:48:19,533 - INFO - SYNC STARTED -> campaigns
+2026-05-07 21:48:19,534 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 21:48:19,535 - INFO - ROWS FETCHED: 0
+2026-05-07 21:48:19,535 - INFO - NO NEW ROWS -> campaigns
+2026-05-07 21:48:19,535 - INFO - SYNC STARTED -> campaign_segments
+2026-05-07 21:48:19,536 - INFO - SELECT cs.id, cs.campaign_id, cs.title, cs.segment_start_date, cs.segment_end_date, cs.allocation, cs.delivered, cs.accepted, cs.rejected, cs.status, cs.deleted, cs.created_by, cs.modified_by, cs.created_on, cs.modified_on FROM campaign_segments cs
+                            WHERE cs.modified_on > :last_sync
+                        
+2026-05-07 21:48:19,537 - INFO - ROWS FETCHED: 0
+2026-05-07 21:48:19,537 - INFO - NO NEW ROWS -> campaign_segments
+2026-05-07 21:48:19,537 - INFO - SYNC STARTED -> campaign_segment_batches
+2026-05-07 21:48:19,537 - INFO - SELECT csb.id, csb.campaign_id, csb.segment_id, csb.dataops_valid, csb.dataops_invalid, csb.dataops_total, csb.email_valid, csb.email_invalid, csb.email_total, csb.quality_valid, csb.quality_invalid, csb.quality_total, csb.dbr_valid, csb.dbr_invalid, csb.dbr_total, csb.vv_valid, csb.vv_invalid, csb.vv_total, csb.mis_valid, csb.mis_invalid, csb.mis_total, csb.priority, csb.batch_status, csb.created_by, csb.completed_at, csb.created_at, csb.updated_at FROM campaign_segment_batch csb
+2026-05-07 21:48:19,551 - INFO - ROWS FETCHED: 438
+2026-05-07 21:48:19,556 - INFO - 
+                        INSERT INTO "campaign_segment_batches"
+                        (id, campaign_id, segment_id, dataops_valid, dataops_invalid, dataops_total, email_valid, email_invalid, email_total, quality_valid, quality_invalid, quality_total, dbr_valid, dbr_invalid, dbr_total, vv_valid, vv_invalid, vv_total, mis_valid, mis_invalid, mis_total, priority, status, created_by, completed_at, created_at, updated_at)
+                        VALUES (:id, :campaign_id, :segment_id, :dataops_valid, :dataops_invalid, :dataops_total, :email_valid, :email_invalid, :email_total, :quality_valid, :quality_invalid, :quality_total, :dbr_valid, :dbr_invalid, :dbr_total, :vv_valid, :vv_invalid, :vv_total, :mis_valid, :mis_invalid, :mis_total, :priority, :status, :created_by, :completed_at, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        campaign_id = EXCLUDED.campaign_id, segment_id = EXCLUDED.segment_id, dataops_valid = EXCLUDED.dataops_valid, dataops_invalid = EXCLUDED.dataops_invalid, dataops_total = EXCLUDED.dataops_total, email_valid = EXCLUDED.email_valid, email_invalid = EXCLUDED.email_invalid, email_total = EXCLUDED.email_total, quality_valid = EXCLUDED.quality_valid, quality_invalid = EXCLUDED.quality_invalid, quality_total = EXCLUDED.quality_total, dbr_valid = EXCLUDED.dbr_valid, dbr_invalid = EXCLUDED.dbr_invalid, dbr_total = EXCLUDED.dbr_total, vv_valid = EXCLUDED.vv_valid, vv_invalid = EXCLUDED.vv_invalid, vv_total = EXCLUDED.vv_total, mis_valid = EXCLUDED.mis_valid, mis_invalid = EXCLUDED.mis_invalid, mis_total = EXCLUDED.mis_total, priority = EXCLUDED.priority, status = EXCLUDED.status, created_by = EXCLUDED.created_by, completed_at = EXCLUDED.completed_at, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 21:48:19,636 - INFO - SYNC COMPLETED -> campaign_segment_batches

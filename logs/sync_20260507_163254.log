@@ -1,0 +1,157 @@
+2026-05-07 16:34:18,321 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:34:18,323 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:34:18,326 - INFO - ROWS FETCHED: 31
+2026-05-07 16:34:18,327 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 16:34:18,337 - INFO - SYNC COMPLETED -> users_list
+2026-05-07 16:36:45,318 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:36:45,320 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > :last_sync
+                        
+2026-05-07 16:36:45,321 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:36:45,321 - ERROR - (pymysql.err.OperationalError) (1052, "Column 'modified' in where clause is ambiguous")
+[SQL: SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > %(last_sync)s
+                        ]
+[parameters: {'last_sync': '2026-04-23T12:32:28'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-07 16:37:40,573 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:37:40,574 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > :last_sync
+                        
+2026-05-07 16:37:40,574 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:37:40,574 - ERROR - (pymysql.err.OperationalError) (1052, "Column 'modified' in where clause is ambiguous")
+[SQL: SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > %(last_sync)s
+                        ]
+[parameters: {'last_sync': '2026-04-23T12:32:28'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-07 16:37:40,574 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:37:40,575 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:37:40,575 - INFO - ROWS FETCHED: 31
+2026-05-07 16:37:40,576 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 16:37:40,587 - INFO - SYNC COMPLETED -> users_list
+2026-05-07 16:38:31,954 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:38:31,955 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:38:31,957 - INFO - ROWS FETCHED: 31
+2026-05-07 16:38:31,958 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 16:38:31,966 - INFO - SYNC COMPLETED -> users_list
+2026-05-07 16:39:17,979 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:39:17,979 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > :last_sync
+                        
+2026-05-07 16:39:17,980 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:39:17,981 - ERROR - (pymysql.err.OperationalError) (1052, "Column 'modified' in where clause is ambiguous")
+[SQL: SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > %(last_sync)s
+                        ]
+[parameters: {'last_sync': '2026-05-07T04:36:25'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-07 16:40:58,064 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:40:58,066 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > :last_sync
+                        
+2026-05-07 16:40:58,066 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:40:58,067 - ERROR - (pymysql.err.OperationalError) (1052, "Column 'modified' in where clause is ambiguous")
+[SQL: SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > %(last_sync)s
+                        ]
+[parameters: {'last_sync': '2026-05-07T04:36:25'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-07 16:41:10,771 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:41:10,771 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > :last_sync
+                        
+2026-05-07 16:41:10,772 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:41:10,772 - ERROR - (pymysql.err.OperationalError) (1052, "Column 'modified' in where clause is ambiguous")
+[SQL: SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE modified > %(last_sync)s
+                        ]
+[parameters: {'last_sync': '2026-05-07T04:36:25'}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-05-07 16:49:31,524 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:49:31,526 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:49:31,528 - INFO - ROWS FETCHED: 31
+2026-05-07 16:49:31,528 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 16:49:31,535 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:49:31,536 - ERROR - Could not locate column in row for column 'u.modified'
+2026-05-07 16:50:01,564 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:50:01,565 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:50:01,567 - INFO - ROWS FETCHED: 31
+2026-05-07 16:50:01,567 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 16:50:01,579 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:50:01,579 - ERROR - Could not locate column in row for column 'u.modified'
+2026-05-07 16:51:15,359 - INFO - SYNC STARTED -> users_list
+2026-05-07 16:51:15,361 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 16:51:15,363 - INFO - ROWS FETCHED: 31
+2026-05-07 16:51:15,363 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 16:51:15,378 - ERROR - SYNC FAILED -> users_list
+2026-05-07 16:51:15,378 - ERROR - Could not locate column in row for column 'u.modified'
+2026-05-07 17:03:18,806 - INFO - SYNC STARTED -> users_list
+2026-05-07 17:03:18,808 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+2026-05-07 17:03:18,811 - INFO - ROWS FETCHED: 31
+2026-05-07 17:03:18,811 - INFO - 
+                        INSERT INTO "users_list"
+                        (id, email, password, is_active, is_deleted, updated_at, created_at, first_name, last_name, job_title, role_id, department_id)
+                        VALUES (:id, :email, :password, :is_active, :is_deleted, :updated_at, :created_at, :first_name, :last_name, :job_title, :role_id, :department_id)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        email = EXCLUDED.email, password = EXCLUDED.password, is_active = EXCLUDED.is_active, is_deleted = EXCLUDED.is_deleted, updated_at = EXCLUDED.updated_at, created_at = EXCLUDED.created_at, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, job_title = EXCLUDED.job_title, role_id = EXCLUDED.role_id, department_id = EXCLUDED.department_id
+                    
+2026-05-07 17:03:18,819 - ERROR - SYNC FAILED -> users_list
+2026-05-07 17:03:18,820 - ERROR - Could not locate column in row for column 'u.modified'

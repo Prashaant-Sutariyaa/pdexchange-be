@@ -1,0 +1,19 @@
+2026-05-06 21:59:12,064 - INFO - SYNC STARTED: users -> users_test
+2026-05-06 21:59:12,064 - INFO - TRUNCATE TABLE "users_test"
+2026-05-06 21:59:12,076 - INFO - SELECT * FROM users
+2026-05-06 21:59:12,079 - INFO - ROWS FETCHED: 31
+2026-05-06 21:59:12,079 - INFO - 
+                        INSERT INTO "users_test"
+                        (id, username, password, email, activated, banned, ban_reason, new_password_key, new_password_requested, new_email, new_email_key, approved, meta, last_ip, last_login, created, modified)
+                        VALUES (:id, :username, :password, :email, :activated, :banned, :ban_reason, :new_password_key, :new_password_requested, :new_email, :new_email_key, :approved, :meta, :last_ip, :last_login, :created, :modified)
+                    
+2026-05-06 22:00:26,312 - INFO - SYNC STARTED: users -> users_test
+2026-05-06 22:00:26,312 - INFO - TRUNCATE TABLE "users_test"
+2026-05-06 22:00:26,314 - INFO - SELECT * FROM users
+2026-05-06 22:00:26,316 - INFO - ROWS FETCHED: 31
+2026-05-06 22:00:26,316 - INFO - 
+                        INSERT INTO "users_test"
+                        (id, username, password, email, activated, banned, ban_reason, new_password_key, new_password_requested, new_email, new_email_key, approved, meta, last_ip, last_login, created, modified)
+                        VALUES (:id, :username, :password, :email, :activated, :banned, :ban_reason, :new_password_key, :new_password_requested, :new_email, :new_email_key, :approved, :meta, :last_ip, :last_login, :created, :modified)
+                    
+2026-05-06 22:00:26,327 - INFO - SYNC COMPLETED: users

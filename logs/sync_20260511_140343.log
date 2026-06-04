@@ -1,0 +1,91 @@
+2026-05-11 14:03:48,880 - INFO - SYNC STARTED -> users
+2026-05-11 14:03:48,883 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-11 14:03:48,888 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:48,888 - INFO - NO NEW ROWS -> users
+2026-05-11 14:03:48,888 - INFO - SYNC STARTED -> clients
+2026-05-11 14:03:48,888 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-11 14:03:48,890 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:48,890 - INFO - NO NEW ROWS -> clients
+2026-05-11 14:03:48,891 - INFO - SYNC STARTED -> vendors
+2026-05-11 14:03:48,891 - INFO - SELECT v.id, v.name, v.code, v.address, v.country, v.assigned_to, v.contact_first_name, v.contact_last_name, v.contact_email, v.contact_office_no, v.contact_mobile_no, v.contact_designation, v.billing_name, v.billing_email, v.billing_address, v.billing_terms, v.status, v.created_by, v.modified_by, v.created_on, v.modified_on FROM vendors v
+                            WHERE v.modified_on > :last_sync
+                        
+2026-05-11 14:03:48,893 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:48,893 - INFO - NO NEW ROWS -> vendors
+2026-05-11 14:03:48,893 - INFO - SYNC STARTED -> campaigns
+2026-05-11 14:03:48,894 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-11 14:03:48,897 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:48,897 - INFO - NO NEW ROWS -> campaigns
+2026-05-11 14:03:48,897 - INFO - SYNC STARTED -> campaign_segments
+2026-05-11 14:03:48,897 - INFO - SELECT cs.id, cs.campaign_id, cs.title, cs.segment_start_date, cs.segment_end_date, cs.allocation, cs.delivered, cs.accepted, cs.rejected, cs.status, cs.deleted, cs.created_by, cs.modified_by, cs.created_on, cs.modified_on FROM campaign_segments cs
+                            WHERE cs.modified_on > :last_sync
+                        
+2026-05-11 14:03:48,901 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:48,901 - INFO - NO NEW ROWS -> campaign_segments
+2026-05-11 14:03:48,901 - INFO - SYNC STARTED -> campaign_segment_batches
+2026-05-11 14:03:48,901 - INFO - SELECT csb.id, csb.campaign_id, csb.segment_id, csb.dataops_valid, csb.dataops_invalid, csb.dataops_total, csb.email_valid, csb.email_invalid, csb.email_total, csb.quality_valid, csb.quality_invalid, csb.quality_total, csb.dbr_valid, csb.dbr_invalid, csb.dbr_total, csb.vv_valid, csb.vv_invalid, csb.vv_total, csb.mis_valid, csb.mis_invalid, csb.mis_total, csb.priority, csb.batch_status, csb.created_by, csb.completed_at, csb.created_at, csb.updated_at FROM campaign_segment_batch csb
+                            WHERE csb.updated_at > :last_sync
+                        
+2026-05-11 14:03:48,905 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:48,905 - INFO - NO NEW ROWS -> campaign_segment_batches
+2026-05-11 14:03:48,905 - INFO - SYNC STARTED -> campaign_segment_batch_transactions
+2026-05-11 14:03:48,905 - INFO - SELECT csbt.id, csbt.batch_id, csbt.email, csbt.email_hash, csbt.vendor_code, csbt.salutation, csbt.first_name, csbt.last_name, csbt.tal_company_name, csbt.li_company_name, csbt.domain, csbt.job_title, csbt.job_level, csbt.job_department, csbt.work_phone, csbt.headquarter_phone, csbt.contact_li_profile, csbt.address1, csbt.address2, csbt.city, csbt.state, csbt.zip_code, csbt.country, csbt.industry, csbt.sub_industry, csbt.sic_code, csbt.naics_code, csbt.employee_count, csbt.employee_range, csbt.revenue_count, csbt.revenue_range, csbt.company_li_profile, csbt.source, csbt.installbase_technology, csbt.email_validation_status, csbt.dataops_agent, csbt.dataops_timestamp, csbt.email_status, csbt.email_reason, csbt.asset1, csbt.asset2, csbt.ip_address, csbt.email_time_tool, csbt.email_agent, csbt.email_timestamp, csbt.quality_status, csbt.quality_reason, csbt.quality_agent, csbt.quality_timestamp, csbt.work_experience, csbt.activity, csbt.comments, csbt.dbr_status, csbt.dbr_reason, csbt.dbr_agent, csbt.dbr_timestamp, csbt.vv_number, csbt.vv_disposition, csbt.vv_agent, csbt.vv_timestamp, csbt.mis_status, csbt.mis_reason, csbt.mis_agent, csbt.mis_timestamp, csbt.is_deleted, csbt.created_at, csbt.updated_at FROM campaign_segment_batch_transactions csbt
+                            WHERE csbt.updated_at > :last_sync
+                        
+2026-05-11 14:03:49,230 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:49,230 - INFO - NO NEW ROWS -> campaign_segment_batch_transactions
+2026-05-11 14:03:49,230 - INFO - SYNC STARTED -> sentinel_jobs
+2026-05-11 14:03:49,230 - INFO - SELECT sj.id, sj.job_type, sj.department, sj.campaign_ids, sj.segment_ids, sj.batch_ids, sj.file_name, sj.file_path, sj.file_hash, sj.status, sj.priority, sj.attempts, sj.max_attempts, sj.created_at, sj.started_at, sj.completed_at, sj.output_file_name, sj.output_file_path, sj.invalid_file_name, sj.invalid_file_path, sj.error_message, sj.created_by FROM sentinel_jobs sj
+                            WHERE sj.created_at > :last_sync
+                        
+2026-05-11 14:03:49,232 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:49,232 - INFO - NO NEW ROWS -> sentinel_jobs
+2026-05-11 14:03:49,232 - INFO - SYNC STARTED -> sentinel_activity_logs
+2026-05-11 14:03:49,232 - INFO - SELECT sal.id, sal.user_id, sal.job_id, sal.user_role, sal.department, sal.activity_type, sal.campaign_ids, sal.segment_ids, sal.batch_ids, sal.batch_status, sal.total_rows, sal.valid_rows, sal.invalid_rows, sal.file_name, sal.file_path, sal.file_link, sal.action_source, sal.remarks, sal.created_at FROM sentinel_activity_log sal
+                            WHERE sal.created_at > :last_sync
+                        
+2026-05-11 14:03:49,234 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:49,234 - INFO - NO NEW ROWS -> sentinel_activity_logs
+2026-05-11 14:03:49,234 - INFO - SYNC STARTED -> sentinel_agent_productivity
+2026-05-11 14:03:49,234 - INFO - SELECT sap.id, sap.agent_id, sap.agent_email, sap.department, sap.campaign_id, sap.segment_id, sap.batch_id, sap.total_rows, sap.valid_rows, sap.invalid_rows, sap.work_date, sap.derived_from, sap.created_at FROM sentinel_agent_productivity sap
+                            WHERE sap.created_at > :last_sync
+                        
+2026-05-11 14:03:49,241 - INFO - ROWS FETCHED: 0
+2026-05-11 14:03:49,241 - INFO - NO NEW ROWS -> sentinel_agent_productivity
+2026-05-11 14:03:49,241 - INFO - SYNC STARTED -> dispositions
+2026-05-11 14:03:49,241 - INFO - SELECT d.id, d.call_disposition, d.status, d.sentinel_status, d.date_entered, d.date_modified, d.created_by, d.modified_by, d.deleted, d.churnable FROM dispositions d
+2026-05-11 14:03:49,243 - INFO - ROWS FETCHED: 31
+2026-05-11 14:03:49,243 - INFO - 
+                        INSERT INTO "dispositions"
+                        (disposition_code, call_disposition, status, sentinel_status, churnable, created_at, created_by, updated_at, updated_by, is_deleted)
+                        VALUES (:disposition_code, :call_disposition, :status, :sentinel_status, :churnable, :created_at, :created_by, :updated_at, :updated_by, :is_deleted)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        disposition_code = EXCLUDED.disposition_code, call_disposition = EXCLUDED.call_disposition, status = EXCLUDED.status, sentinel_status = EXCLUDED.sentinel_status, churnable = EXCLUDED.churnable, created_at = EXCLUDED.created_at, created_by = EXCLUDED.created_by, updated_at = EXCLUDED.updated_at, updated_by = EXCLUDED.updated_by, is_deleted = EXCLUDED.is_deleted
+                    
+2026-05-11 14:03:49,246 - ERROR - SYNC FAILED -> dispositions
+2026-05-11 14:03:49,246 - ERROR - (psycopg2.errors.DatatypeMismatch) column "churnable" is of type boolean but expression is of type integer
+LINE 4: ...9', 'Ringing / No Answer', 'Incomplete', 'Valid', 0, '2022-1...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+[SQL: 
+                        INSERT INTO "dispositions"
+                        (disposition_code, call_disposition, status, sentinel_status, churnable, created_at, created_by, updated_at, updated_by, is_deleted)
+                        VALUES (%(disposition_code)s, %(call_disposition)s, %(status)s, %(sentinel_status)s, %(churnable)s, %(created_at)s, %(created_by)s, %(updated_at)s, %(updated_by)s, %(is_deleted)s)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        disposition_code = EXCLUDED.disposition_code, call_disposition = EXCLUDED.call_disposition, status = EXCLUDED.status, sentinel_status = EXCLUDED.sentinel_status, churnable = EXCLUDED.churnable, created_at = EXCLUDED.created_at, created_by = EXCLUDED.created_by, updated_at = EXCLUDED.updated_at, updated_by = EXCLUDED.updated_by, is_deleted = EXCLUDED.is_deleted
+                    ]
+[parameters: [{'disposition_code': 'DSP633AF74AB7CA7077582089', 'call_disposition': 'Ringing / No Answer', 'status': 'Incomplete', 'sentinel_status': 'Valid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582090', 'call_disposition': 'Call Back Later', 'status': 'Scheduled', 'sentinel_status': 'Valid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': True}, {'disposition_code': 'DSP633AF74AB7CA7077582091', 'call_disposition': 'Cannot/Denied Transfer', 'status': 'Incomplete', 'sentinel_status': 'Invalid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582092', 'call_disposition': 'Company IVR', 'status': 'Pre-QA', 'sentinel_status': 'Valid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582093', 'call_disposition': 'Not In Directory', 'status': 'Final', 'sentinel_status': 'Invalid', 'churnable': 0, 'created_at': datetime.datetime(2022, 11, 10, 20, 29, 58), 'created_by': '1', 'updated_at': datetime.datetime(2022, 11, 10, 20, 29, 58), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582095', 'call_disposition': 'Company Not On LinkedIn', 'status': 'Final', 'sentinel_status': 'Invalid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582096', 'call_disposition': 'Company Verified', 'status': 'Pre-QA', 'sentinel_status': 'Valid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582097', 'call_disposition': 'Dead Contact', 'status': 'Final', 'sentinel_status': 'Invalid', 'churnable': 0, 'created_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'created_by': '1', 'updated_at': datetime.datetime(2022, 10, 21, 23, 52, 1), 'updated_by': '1', 'is_deleted': False}  ... displaying 10 of 31 total bound parameter sets ...  {'disposition_code': 'DSP633AF74AB7CA7077582120', 'call_disposition': 'DNC – Prospect DNC', 'status': 'Final', 'sentinel_status': 'Invalid', 'churnable': 0, 'created_at': datetime.datetime(2023, 8, 22, 21, 54, 19), 'created_by': '1', 'updated_at': datetime.datetime(2023, 8, 22, 21, 54, 19), 'updated_by': '1', 'is_deleted': False}, {'disposition_code': 'DSP633AF74AB7CA7077582121', 'call_disposition': 'Ringing / Mulitple Sources', 'status': 'Incomplete', 'sentinel_status': 'Valid', 'churnable': 0, 'created_at': datetime.datetime(2026, 4, 21, 19, 58, 47), 'created_by': '1', 'updated_at': datetime.datetime(2026, 4, 21, 19, 58, 47), 'updated_by': '1', 'is_deleted': False}]]
+(Background on this error at: https://sqlalche.me/e/20/f405)

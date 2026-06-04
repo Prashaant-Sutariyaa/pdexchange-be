@@ -1,0 +1,12 @@
+2026-05-07 13:48:21,959 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 13:48:21,959 - INFO - TRUNCATE TABLE "users_list"
+2026-05-07 13:48:21,964 - INFO - 
+                        SELECT id, email, department_id, activated, banned, modified, created
+                        FROM users
+                    
+2026-05-07 13:48:52,265 - INFO - SYNC STARTED: users -> users_list
+2026-05-07 13:48:52,265 - INFO - TRUNCATE TABLE "users_list"
+2026-05-07 13:48:52,267 - INFO - 
+                        SELECT id, email, department_id, activated, banned, modified, created
+                        FROM users
+                    

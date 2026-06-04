@@ -1,0 +1,74 @@
+2026-05-08 20:27:16,559 - INFO - SYNC STARTED -> users
+2026-05-08 20:27:16,561 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-08 20:27:16,563 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,563 - INFO - NO NEW ROWS -> users
+2026-05-08 20:27:16,563 - INFO - SYNC STARTED -> clients
+2026-05-08 20:27:16,563 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-08 20:27:16,564 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,564 - INFO - NO NEW ROWS -> clients
+2026-05-08 20:27:16,565 - INFO - SYNC STARTED -> vendors
+2026-05-08 20:27:16,565 - INFO - SELECT v.id, v.name, v.code, v.address, v.country, v.assigned_to, v.contact_first_name, v.contact_last_name, v.contact_email, v.contact_office_no, v.contact_mobile_no, v.contact_designation, v.billing_name, v.billing_email, v.billing_address, v.billing_terms, v.status, v.created_by, v.modified_by, v.created_on, v.modified_on FROM vendors v
+                            WHERE v.modified_on > :last_sync
+                        
+2026-05-08 20:27:16,565 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,566 - INFO - NO NEW ROWS -> vendors
+2026-05-08 20:27:16,566 - INFO - SYNC STARTED -> campaigns
+2026-05-08 20:27:16,566 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-08 20:27:16,568 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,568 - INFO - NO NEW ROWS -> campaigns
+2026-05-08 20:27:16,568 - INFO - SYNC STARTED -> campaign_segments
+2026-05-08 20:27:16,569 - INFO - SELECT cs.id, cs.campaign_id, cs.title, cs.segment_start_date, cs.segment_end_date, cs.allocation, cs.delivered, cs.accepted, cs.rejected, cs.status, cs.deleted, cs.created_by, cs.modified_by, cs.created_on, cs.modified_on FROM campaign_segments cs
+                            WHERE cs.modified_on > :last_sync
+                        
+2026-05-08 20:27:16,574 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,574 - INFO - NO NEW ROWS -> campaign_segments
+2026-05-08 20:27:16,574 - INFO - SYNC STARTED -> sentinel_jobs
+2026-05-08 20:27:16,574 - INFO - SELECT sj.id, sj.job_type, sj.department, sj.campaign_ids, sj.segment_ids, sj.batch_ids, sj.file_name, sj.file_path, sj.file_hash, sj.status, sj.priority, sj.attempts, sj.max_attempts, sj.created_at, sj.started_at, sj.completed_at, sj.output_file_name, sj.output_file_path, sj.invalid_file_name, sj.invalid_file_path, sj.error_message, sj.created_by FROM sentinel_jobs sj
+                            WHERE sj.created_at > :last_sync
+                        
+2026-05-08 20:27:16,576 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,576 - INFO - NO NEW ROWS -> sentinel_jobs
+2026-05-08 20:27:16,576 - INFO - SYNC STARTED -> sentinel_jobs
+2026-05-08 20:27:16,576 - INFO - SELECT sj.id, sj.job_type, sj.department, sj.campaign_ids, sj.segment_ids, sj.batch_ids, sj.file_name, sj.file_path, sj.file_hash, sj.status, sj.priority, sj.attempts, sj.max_attempts, sj.created_at, sj.started_at, sj.completed_at, sj.output_file_name, sj.output_file_path, sj.invalid_file_name, sj.invalid_file_path, sj.error_message, sj.created_by FROM sentinel_jobs sj
+                            WHERE sj.created_at > :last_sync
+                        
+2026-05-08 20:27:16,577 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,577 - INFO - NO NEW ROWS -> sentinel_jobs
+2026-05-08 20:27:16,577 - INFO - SYNC STARTED -> sentinel_activity_logs
+2026-05-08 20:27:16,577 - INFO - SELECT sal.id, sal.user_id, sal.job_id, sal.user_role, sal.department, sal.activity_type, sal.campaign_ids, sal.segment_ids, sal.batch_ids, sal.batch_status, sal.total_rows, sal.valid_rows, sal.invalid_rows, sal.file_name, sal.file_path, sal.file_link, sal.action_source, sal.remarks, sal.created_at FROM sentinel_activity_log sal
+                            WHERE sal.created_at > :last_sync
+                        
+2026-05-08 20:27:16,578 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,578 - INFO - NO NEW ROWS -> sentinel_activity_logs
+2026-05-08 20:27:16,578 - INFO - SYNC STARTED -> sentinel_agent_productivity
+2026-05-08 20:27:16,579 - INFO - SELECT sap.id, sap.agent_id, sap.agent_email, sap.department, sap.campaign_id, sap.segment_id, sap.batch_id, sap.total_rows, sap.valid_rows, sap.invalid_rows, sap.work_date, sap.derived_from, sap.created_at FROM sentinel_agent_productivity sap
+                            WHERE sap.created_at > :last_sync
+                        
+2026-05-08 20:27:16,586 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,586 - INFO - NO NEW ROWS -> sentinel_agent_productivity
+2026-05-08 20:27:16,586 - INFO - SYNC STARTED -> campaign_segment_batches
+2026-05-08 20:27:16,586 - INFO - SELECT csb.id, csb.campaign_id, csb.segment_id, csb.dataops_valid, csb.dataops_invalid, csb.dataops_total, csb.email_valid, csb.email_invalid, csb.email_total, csb.quality_valid, csb.quality_invalid, csb.quality_total, csb.dbr_valid, csb.dbr_invalid, csb.dbr_total, csb.vv_valid, csb.vv_invalid, csb.vv_total, csb.mis_valid, csb.mis_invalid, csb.mis_total, csb.priority, csb.batch_status, csb.created_by, csb.completed_at, csb.created_at, csb.updated_at FROM campaign_segment_batch csb
+                            WHERE csb.updated_at > :last_sync
+                        
+2026-05-08 20:27:16,589 - INFO - ROWS FETCHED: 0
+2026-05-08 20:27:16,589 - INFO - NO NEW ROWS -> campaign_segment_batches
+2026-05-08 20:27:16,589 - INFO - SYNC STARTED -> campaign_segment_batch_transactions
+2026-05-08 20:27:16,589 - INFO - SELECT csbt.id, csbt.batch_id, csbt.email, csbt.email_hash, csbt.vendor_code, csbt.salutation, csbt.first_name, csbt.last_name, csbt.tal_company_name, csbt.li_company_name, csbt.domain, csbt.job_title, csbt.job_level, csbt.job_department, csbt.work_phone, csbt.headquarter_phone, csbt.contact_li_profile, csbt.address1, csbt.address2, csbt.city, csbt.state, csbt.zip_code, csbt.country, csbt.industry, csbt.sub_industry, csbt.sic_code, csbt.naics_code, csbt.employee_count, csbt.employee_range, csbt.revenue_count, csbt.revenue_range, csbt.company_li_profile, csbt.source, csbt.installbase_technology, csbt.email_validation_status, csbt.dataops_agent, csbt.dataops_timestamp, csbt.email_status, csbt.email_reason, csbt.asset1, csbt.asset2, csbt.ip_address, csbt.email_time_tool, csbt.email_agent, csbt.email_timestamp, csbt.quality_status, csbt.quality_reason, csbt.quality_agent, csbt.quality_timestamp, csbt.work_experience, csbt.activity, csbt.comments, csbt.dbr_status, csbt.dbr_reason, csbt.dbr_agent, csbt.dbr_timestamp, csbt.vv_number, csbt.vv_disposition, csbt.vv_agent, csbt.vv_timestamp, csbt.mis_status, csbt.mis_reason, csbt.mis_agent, csbt.mis_timestamp, csbt.is_deleted, csbt.created_at, csbt.updated_at FROM campaign_segment_batch_transactions csbt
+2026-05-08 20:27:21,013 - INFO - ROWS FETCHED: 77738
+2026-05-08 20:27:24,177 - INFO - 
+                        INSERT INTO "campaign_segment_batch_transactions"
+                        (id, batch_code, email, email_hash, vendor_code, salutation, first_name, last_name, tal_company_name, li_company_name, domain, job_title, job_level, job_department, work_phone, headquarter_phone, contact_li_profile, address1, address2, city, state, zip_code, country, industry, sub_industry, sic_code, naics_code, employee_count, employee_range, revenue_count, revenue_range, company_li_profile, source, installbase_technology, email_validation_status, dataops_agent, dataops_timestamp, email_status, email_reason, asset1, asset2, ip_address, email_time_tool, email_agent, email_timestamp, quality_status, quality_reason, quality_agent, quality_timestamp, work_experience, activity, comments, dbr_status, dbr_reason, dbr_agent, dbr_timestamp, vv_number, vv_disposition, vv_agent, vv_timestamp, mis_status, mis_reason, mis_agent, mis_timestamp, is_deleted, created_at, updated_at)
+                        VALUES (:id, :batch_code, :email, :email_hash, :vendor_code, :salutation, :first_name, :last_name, :tal_company_name, :li_company_name, :domain, :job_title, :job_level, :job_department, :work_phone, :headquarter_phone, :contact_li_profile, :address1, :address2, :city, :state, :zip_code, :country, :industry, :sub_industry, :sic_code, :naics_code, :employee_count, :employee_range, :revenue_count, :revenue_range, :company_li_profile, :source, :installbase_technology, :email_validation_status, :dataops_agent, :dataops_timestamp, :email_status, :email_reason, :asset1, :asset2, :ip_address, :email_time_tool, :email_agent, :email_timestamp, :quality_status, :quality_reason, :quality_agent, :quality_timestamp, :work_experience, :activity, :comments, :dbr_status, :dbr_reason, :dbr_agent, :dbr_timestamp, :vv_number, :vv_disposition, :vv_agent, :vv_timestamp, :mis_status, :mis_reason, :mis_agent, :mis_timestamp, :is_deleted, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        batch_code = EXCLUDED.batch_code, email = EXCLUDED.email, email_hash = EXCLUDED.email_hash, vendor_code = EXCLUDED.vendor_code, salutation = EXCLUDED.salutation, first_name = EXCLUDED.first_name, last_name = EXCLUDED.last_name, tal_company_name = EXCLUDED.tal_company_name, li_company_name = EXCLUDED.li_company_name, domain = EXCLUDED.domain, job_title = EXCLUDED.job_title, job_level = EXCLUDED.job_level, job_department = EXCLUDED.job_department, work_phone = EXCLUDED.work_phone, headquarter_phone = EXCLUDED.headquarter_phone, contact_li_profile = EXCLUDED.contact_li_profile, address1 = EXCLUDED.address1, address2 = EXCLUDED.address2, city = EXCLUDED.city, state = EXCLUDED.state, zip_code = EXCLUDED.zip_code, country = EXCLUDED.country, industry = EXCLUDED.industry, sub_industry = EXCLUDED.sub_industry, sic_code = EXCLUDED.sic_code, naics_code = EXCLUDED.naics_code, employee_count = EXCLUDED.employee_count, employee_range = EXCLUDED.employee_range, revenue_count = EXCLUDED.revenue_count, revenue_range = EXCLUDED.revenue_range, company_li_profile = EXCLUDED.company_li_profile, source = EXCLUDED.source, installbase_technology = EXCLUDED.installbase_technology, email_validation_status = EXCLUDED.email_validation_status, dataops_agent = EXCLUDED.dataops_agent, dataops_timestamp = EXCLUDED.dataops_timestamp, email_status = EXCLUDED.email_status, email_reason = EXCLUDED.email_reason, asset1 = EXCLUDED.asset1, asset2 = EXCLUDED.asset2, ip_address = EXCLUDED.ip_address, email_time_tool = EXCLUDED.email_time_tool, email_agent = EXCLUDED.email_agent, email_timestamp = EXCLUDED.email_timestamp, quality_status = EXCLUDED.quality_status, quality_reason = EXCLUDED.quality_reason, quality_agent = EXCLUDED.quality_agent, quality_timestamp = EXCLUDED.quality_timestamp, work_experience = EXCLUDED.work_experience, activity = EXCLUDED.activity, comments = EXCLUDED.comments, dbr_status = EXCLUDED.dbr_status, dbr_reason = EXCLUDED.dbr_reason, dbr_agent = EXCLUDED.dbr_agent, dbr_timestamp = EXCLUDED.dbr_timestamp, vv_number = EXCLUDED.vv_number, vv_disposition = EXCLUDED.vv_disposition, vv_agent = EXCLUDED.vv_agent, vv_timestamp = EXCLUDED.vv_timestamp, mis_status = EXCLUDED.mis_status, mis_reason = EXCLUDED.mis_reason, mis_agent = EXCLUDED.mis_agent, mis_timestamp = EXCLUDED.mis_timestamp, is_deleted = EXCLUDED.is_deleted, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-08 20:27:59,707 - INFO - SYNC COMPLETED -> campaign_segment_batch_transactions

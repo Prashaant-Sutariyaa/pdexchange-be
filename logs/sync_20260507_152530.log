@@ -1,0 +1,2 @@
+2026-05-07 15:25:49,543 - INFO - SYNC STARTED -> users_list
+2026-05-07 15:25:49,543 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, r.id AS role_id FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id LEFT JOIN roles r ON r.name = p.role

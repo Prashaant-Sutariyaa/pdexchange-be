@@ -1,0 +1,38 @@
+2026-05-07 18:35:37,090 - INFO - SYNC STARTED -> users_list
+2026-05-07 18:35:37,092 - INFO - SELECT u.id, u.email, u.password, u.activated, u.banned, u.modified, u.created, p.first_name, p.last_name, p.job_title, p.role, p.department FROM users u LEFT JOIN user_profiles p ON u.id = p.id
+                            WHERE u.modified > :last_sync
+                        
+2026-05-07 18:35:37,094 - INFO - ROWS FETCHED: 0
+2026-05-07 18:35:37,094 - INFO - NO NEW ROWS -> users_list
+2026-05-07 18:35:37,094 - INFO - SYNC STARTED -> campaign_data
+2026-05-07 18:35:37,095 - INFO - SELECT c.id, c.code, c.name, c.type, c.delivery_mode, c.delivery_method, c.client, c.status, c.start_date, c.end_date, c.allocation, c.delivered, c.accepted, c.rejected, c.currency, c.cpl, c.priority, c.comments, c.created_by, c.modified_by, c.created_on, c.modified_on FROM campaigns c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 18:35:37,096 - INFO - ROWS FETCHED: 0
+2026-05-07 18:35:37,096 - INFO - NO NEW ROWS -> campaign_data
+2026-05-07 18:35:37,096 - INFO - SYNC STARTED -> client_data
+2026-05-07 18:35:37,096 - INFO - SELECT c.id, c.name, c.code, c.address, c.country, c.assigned_to, c.contact_first_name, c.contact_last_name, c.contact_email, c.contact_office_no, c.contact_mobile_no, c.contact_designation, c.billing_name, c.billing_email, c.billing_address, c.billing_terms, c.status, c.created_by, c.modified_by, c.created_on, c.modified_on FROM clients c
+                            WHERE c.modified_on > :last_sync
+                        
+2026-05-07 18:35:37,097 - INFO - ROWS FETCHED: 0
+2026-05-07 18:35:37,097 - INFO - NO NEW ROWS -> client_data
+2026-05-07 18:35:37,097 - INFO - SYNC STARTED -> vendors_data
+2026-05-07 18:35:37,097 - INFO - SELECT v.id, v.name, v.code, v.address, v.country, v.assigned_to, v.contact_first_name, v.contact_last_name, v.contact_email, v.contact_office_no, v.contact_mobile_no, v.contact_designation, v.billing_name, v.billing_email, v.billing_address, v.billing_terms, v.status, v.created_by, v.modified_by, v.created_on, v.modified_on FROM vendors v
+                            WHERE v.modified_on > :last_sync
+                        
+2026-05-07 18:35:37,098 - INFO - ROWS FETCHED: 0
+2026-05-07 18:35:37,098 - INFO - NO NEW ROWS -> vendors_data
+2026-05-07 18:35:37,098 - INFO - SYNC STARTED -> campaign_segments_data
+2026-05-07 18:35:37,099 - INFO - SELECT cs.id, cs.campaign_id, cs.title, cs.segment_start_date, cs.segment_end_date, cs.allocation, cs.delivered, cs.accepted, cs.rejected, cs.status, cs.deleted, cs.created_by, cs.modified_by, cs.created_on, cs.modified_on FROM campaign_segments cs
+2026-05-07 18:35:37,106 - INFO - ROWS FETCHED: 244
+2026-05-07 18:35:37,107 - INFO - 
+                        INSERT INTO "campaign_segments_data"
+                        (segment_code, campaign_id, title, segment_start_date, segment_end_date, allocation, delivered, accepted, rejected, status, is_deleted, created_by, updated_by, created_at, updated_at)
+                        VALUES (:segment_code, :campaign_id, :title, :segment_start_date, :segment_end_date, :allocation, :delivered, :accepted, :rejected, :status, :is_deleted, :created_by, :updated_by, :created_at, :updated_at)
+
+                        ON CONFLICT (id)
+
+                        DO UPDATE SET
+                        segment_code = EXCLUDED.segment_code, campaign_id = EXCLUDED.campaign_id, title = EXCLUDED.title, segment_start_date = EXCLUDED.segment_start_date, segment_end_date = EXCLUDED.segment_end_date, allocation = EXCLUDED.allocation, delivered = EXCLUDED.delivered, accepted = EXCLUDED.accepted, rejected = EXCLUDED.rejected, status = EXCLUDED.status, is_deleted = EXCLUDED.is_deleted, created_by = EXCLUDED.created_by, updated_by = EXCLUDED.updated_by, created_at = EXCLUDED.created_at, updated_at = EXCLUDED.updated_at
+                    
+2026-05-07 18:35:37,161 - INFO - SYNC COMPLETED -> campaign_segments_data
