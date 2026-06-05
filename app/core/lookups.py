@@ -5,7 +5,6 @@ from sqlalchemy import text
 # ============================================================
 LOOKUP_CONFIG = {
     "role_id": {"table": "roles", "key": "name"},
-    "department_id": {"table": "departments", "key": "name"},
     "campaign_id": {"table": "campaigns", "key": "campaign_code"},
     "client_id": {"table": "clients", "key": "client_code"},
 }

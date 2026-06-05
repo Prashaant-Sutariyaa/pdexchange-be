@@ -10,20 +10,12 @@ from app.api.v1.endpoints import (
     auth,
     campaign,
     campaign_segment,
-    disposition,
-    sentinel_activity_log,
-    sentinel_agent_productivity,
-    sentinel_export_router,
-    sentinel_job,
-    sentinel_segment_batch,
-    sentinel_upload,
     user,
     role,
-    department,
     vendor,
 )
 from app.api.v1.endpoints import module_permission
-from app.api.v1.endpoints import role_department_permission
+from app.api.v1.endpoints import role_permission
 from app.api.v1.endpoints import user_permission
 from app.api.v1.endpoints import app_settings
 from app.api.v1.endpoints import client
@@ -31,8 +23,6 @@ from app.api.v1.endpoints import user_access
 from app.api.v1.endpoints import currency_rate
 from app.api.v1.endpoints import revenue
 from app.api.v1.endpoints.sync import router as sync_router
-from app.api.v1.endpoints import campaign_segment_batch
-from app.api.v1.endpoints import campaign_segment_batch_transaction
 
 app = FastAPI(title="CRM Backend", root_path="/api")
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
@@ -58,9 +48,8 @@ app.include_router(auth.router)
 app.include_router(user.router)
 app.include_router(user_access.router)
 app.include_router(role.router)
-app.include_router(department.router)
 app.include_router(module_permission.router)
-app.include_router(role_department_permission.router)
+app.include_router(role_permission.router)
 app.include_router(user_permission.router)
 app.include_router(app_settings.router)
 app.include_router(client.router)
@@ -70,12 +59,3 @@ app.include_router(campaign_segment.router)
 app.include_router(currency_rate.router)
 app.include_router(revenue.router)
 app.include_router(sync_router)
-app.include_router(campaign_segment_batch.router)
-app.include_router(campaign_segment_batch_transaction.router)
-app.include_router(sentinel_job.router)
-app.include_router(sentinel_activity_log.router)
-app.include_router(sentinel_agent_productivity.router)
-app.include_router(disposition.router)
-app.include_router(sentinel_segment_batch.router)
-app.include_router(sentinel_upload.router)
-app.include_router(sentinel_export_router.router)

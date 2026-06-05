@@ -19,7 +19,6 @@ class User(SoftDeleteMixin, Base):
     work_location = Column(String, nullable=True)
 
     role_id = Column(Integer, ForeignKey("roles.id"), nullable=False)
-    department_id = Column(Integer, ForeignKey("departments.id"), nullable=False)
 
     is_active = Column(Boolean, default=True)
     is_deleted = Column(Boolean, default=False)

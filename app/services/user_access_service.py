@@ -1,50 +1,65 @@
 from sqlalchemy.orm import Session
 
 from app.models.module_permission import ModulePermission
-from app.models.role_department_permission import RoleDepartmentPermission
+from app.models.role_permission import RolePermission
 from app.models.user_permission import UserPermission
 
 
 def get_user_permissions(db: Session, user):
     result = {}
 
-    # 🔹 Get all module permissions
-    module_perms = db.query(ModulePermission).filter(
-        ModulePermission.is_deleted == False
-    ).all()
+    # ============================================================
+    # GET ALL MODULE PERMISSIONS
+    # ============================================================
 
-    # 🔹 RDP base permissions
-    rdp_list = db.query(RoleDepartmentPermission).filter(
-        RoleDepartmentPermission.role_id == user.role_id,
-        RoleDepartmentPermission.department_id == user.department_id
-    ).all()
+    module_perms = (
+        db.query(ModulePermission).filter(ModulePermission.is_deleted == False).all()
+    )
 
-    rdp_map = {r.module_permission_id: r.is_active for r in rdp_list}
+    # ============================================================
+    # ROLE PERMISSIONS
+    # ============================================================
 
-    # 🔹 Start building permission map
+    role_permissions = (
+        db.query(RolePermission).filter(RolePermission.role_id == user.role_id).all()
+    )
+
+    role_perm_map = {rp.module_permission_id: rp.is_active for rp in role_permissions}
+
+    # ============================================================
+    # BUILD BASE ACCESS MAP
+    # ============================================================
+
     temp = {}
 
     for mp in module_perms:
-        key = mp.id
-        temp[key] = rdp_map.get(key, False)
+        temp[mp.id] = role_perm_map.get(mp.id, False)
 
-    # 🔹 Apply USER overrides
-    user_perms = db.query(UserPermission).filter(
-        UserPermission.user_id == user.id
-    ).all()
+    # ============================================================
+    # USER OVERRIDES
+    # ============================================================
 
-    for up in user_perms:
-        temp[up.module_permission_id] = up.is_active   # override
+    user_permissions = (
+        db.query(UserPermission).filter(UserPermission.user_id == user.id).all()
+    )
 
-    # 🔹 Convert to module → [permissions]
+    for up in user_permissions:
+        temp[up.module_permission_id] = up.is_active
+
+    # ============================================================
+    # CONVERT TO RESPONSE FORMAT
+    # ============================================================
+
     for mp in module_perms:
-        if temp.get(mp.id):  # only allowed
+
+        if temp.get(mp.id):
+
             module = mp.module_name
-            perm = mp.permission_name
+            permission = mp.permission_name
 
             if module not in result:
                 result[module] = []
 
-            result[module].append(perm)
+            result[module].append(permission)
 
     return result

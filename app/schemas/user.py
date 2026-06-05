@@ -19,7 +19,6 @@ class UserCreate(BaseModel):
     work_location: Optional[str] = None
 
     role_id: int
-    department_id: int
 
 
 class UserUpdate(BaseModel):
@@ -31,7 +30,6 @@ class UserUpdate(BaseModel):
     work_location: Optional[str] = None
 
     role_id: Optional[int] = None
-    department_id: Optional[int] = None
 
     is_active: Optional[bool] = None
 
@@ -47,7 +45,6 @@ class UserResponse(BaseModel):
     work_location: Optional[str]
 
     role_id: int
-    department_id: int
 
     is_active: bool
     is_deleted: bool

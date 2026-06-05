@@ -43,7 +43,6 @@ def create_user(db: Session, data, user_id: int | None):
             job_title=data.job_title,
             work_location=data.work_location,
             role_id=data.role_id,
-            department_id=data.department_id,
             is_active=True,
             is_deleted=False,
             created_by=user_id,
@@ -141,7 +140,6 @@ def update_user(db: Session, user_id: int, data, updated_by: int):
         "first_name": user.first_name,
         "last_name": user.last_name,
         "role_id": user.role_id,
-        "department_id": user.department_id,
     }
 
     for key, value in data.dict(exclude_unset=True).items():
@@ -164,7 +162,6 @@ def update_user(db: Session, user_id: int, data, updated_by: int):
         "first_name": user.first_name,
         "last_name": user.last_name,
         "role_id": user.role_id,
-        "department_id": user.department_id,
     }
 
     # ✅ AUDIT LOG

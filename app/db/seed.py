@@ -3,7 +3,6 @@ from app.db.session import SessionLocal
 from sqlalchemy import func
 
 from app.models.role import Role
-from app.models.department import Department
 from app.models.app_settings import AppSetting  # ✅ ADD
 
 
@@ -19,30 +18,6 @@ def seed_data():
                 db.add(Role(name=name, is_active=True, created_by=1, updated_by=1))
 
             print("✅ Roles seeded")
-
-        # 🔹 Departments
-        if db.query(Department).count() == 0:
-            departments = [
-                "Management",
-                "HR",
-                "Finance",
-                "DataOps",
-                "Email",
-                "Quality",
-                "DBR",
-                "Voice Verification",
-                "MIS",
-                "IT",
-                "Technology",
-                "Sales",
-            ]
-
-            for name in departments:
-                db.add(
-                    Department(name=name, is_active=True, created_by=1, updated_by=1)
-                )
-
-            print("✅ Departments seeded")
 
         # 🔹 App Settings (🔥 ADD HERE)
         if db.query(AppSetting).count() == 0:
