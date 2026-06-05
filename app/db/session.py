@@ -1,8 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "postgresql://postgres:930766@localhost:5432/backend_db"
+from app.core.config import settings  # adjust import path if needed
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(settings.DATABASE_URL)
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
