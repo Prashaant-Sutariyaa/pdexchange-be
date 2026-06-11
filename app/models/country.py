@@ -6,10 +6,10 @@ from sqlalchemy import (
 from sqlalchemy.sql import func
 from sqlalchemy.types import DateTime
 
-from app.db.base import Base
+from app.db.base import ExchangeBase
 
 
-class Country(Base):
+class Country(ExchangeBase):
     __tablename__ = "countries"
 
     id = Column(

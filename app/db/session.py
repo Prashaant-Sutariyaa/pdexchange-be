@@ -10,3 +10,14 @@ SessionLocal = sessionmaker(
     autoflush=False,
     bind=engine
 )
+
+# Exchange Database
+exchange_engine = create_engine(
+    settings.EXCHANGE_DATABASE_URL
+)
+
+ExchangeSessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=exchange_engine
+)

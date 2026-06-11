@@ -2,6 +2,8 @@ from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
+ExchangeBase = declarative_base()
+
 # 🔥 IMPORT ALL MODELS HERE (MANDATORY)
 from app.models.user import User
 from app.models.role import Role
