@@ -13,6 +13,7 @@ from app.api.v1.endpoints import (
     user,
     role,
     vendor,
+    country,
 )
 from app.api.v1.endpoints import module_permission
 from app.api.v1.endpoints import role_permission
@@ -59,3 +60,4 @@ app.include_router(campaign_segment.router)
 app.include_router(currency_rate.router)
 app.include_router(revenue.router)
 app.include_router(sync_router)
+app.include_router(country.router)
